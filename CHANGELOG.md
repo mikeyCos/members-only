@@ -1,6 +1,10 @@
 # Changelog
 ---
 ### 09 JAN 2025
+- Initial commit for `members-only` project.
+- Installed dependencies.
+- Inserted `Introduction` and `Assignment` sections in `PROJECT_SPECIFICATIONS.md`.
+- Created `.env` file locally.
 - Added `validateLogin` onto `authenticationController.postLogin` to validate inputs are not empty.
 - Created a placeholder middleware in `authenticationRouter.js` module named `isAuthenticated`; redirects to the root path if `req.isAuthenticated()` returns true, otherwise move to the next middleware.
 ---

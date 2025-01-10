@@ -6,7 +6,8 @@ DROP TABLE IF EXISTS accounts;
 
 CREATE TABLE IF NOT EXISTS accounts (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  username VARCHAR ( 255 ),
+  
+  email VARCHAR ( 255 ),
   password VARCHAR ( 255 )
 );
 `;
