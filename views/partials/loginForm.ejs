@@ -1,0 +1,18 @@
+<form action="/account/login" method="POST">
+  <ul>
+    <li class="form-item">
+      <label for="username">Username</label>
+      <input name="username" id="username" type="text">
+      <p class="input-error<%= locals.errors?.username && ' active-error'%>"><%= locals.errors?.username.msg %></p>
+    </li>
+    <li class="form-item">
+      <label for="password">Password</label>
+      <input name="password" id="password" type="password">
+      <p class="input-error<%= locals.errors?.password && ' active-error'%>"><%= locals.errors?.password.msg %></p>
+    </li>
+    <% if(locals.message) { %>
+      <p><%= locals.message %></p>
+    <% } %>
+  </ul>
+  <button type="submit">Login</button>
+</form>

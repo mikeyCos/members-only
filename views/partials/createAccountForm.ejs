@@ -1,0 +1,20 @@
+<form action="/account/create" method="POST">
+  <ul>
+    <li class="form-item">
+      <label for="username">Username</label>
+      <input name="username" id="username" type="text" placeholder="username" value="<%= locals.inputs?.username %>">
+      <p class="input-error<%= locals.errors?.username && ' active-error'%>"><%= locals.errors?.username.msg %></p>
+    </li>
+    <li class="form-item">
+      <label for="password">Password</label>
+      <input name="password" id="password" type="password" value="<%= locals.inputs?.password %>">
+      <p class="input-error<%= locals.errors?.password && ' active-error'%>"><%= locals.errors?.password.msg %></p>
+    </li>
+    <li class="form-item">
+      <label for="password-confirmation">Confirm Password</label>
+      <input name="password-confirmation" id="password-confirmation" type="password" value="<%= locals.inputs?.['password-confirmation'] %>">
+      <p class="input-error<%= locals.errors?.['password-confirmation'] && ' active-error'%>"><%= locals.errors?.['password-confirmation']?.msg %></p>
+    </li>
+  </ul>
+  <button type="submit">Sign up</button>
+</form>

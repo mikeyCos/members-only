@@ -1,0 +1,22 @@
+.form-item > .input-error {
+  color: red;
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.form-item > .input-error.active-error {
+  border: unset;
+  clip: unset;
+  height: unset;
+  margin: unset;
+  overflow: unset;
+  padding: unset;
+  position: unset;
+  width: unset;
+}
