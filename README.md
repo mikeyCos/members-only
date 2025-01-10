@@ -28,7 +28,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/mikeyCos/cv-application">
+  <a href="https://github.com/mikeyCos/members-only">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -46,7 +46,7 @@
     ·
     <a href="https://github.com/github_username/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
     ·
-    <a href="https://github.com/mikeyCos/cv-application/blob/main/CHANGELOG.md">Changelog</a>
+    <a href="https://github.com/mikeyCos/members-only/blob/main/CHANGELOG.md">Changelog</a>
   </p>
 </div>
 
@@ -80,7 +80,7 @@
 
 ## About The Project
 
-[![CV Application Screen Shot][product-screenshot]](https://example.com)
+[![Members Only Screen Shot][product-screenshot]](https://example.com)
 
 Project: ProjectName
 
@@ -156,7 +156,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 ## Roadmap
 
 - [x] Create skeleton components.
-- [ ] Create a media branch for README images.
+- [ ] Initialized a PostgreSQL database.
+  - [ ] Create a accounts table first name, last name, email, password, member
+  - [ ] Create a messages table author, message, timestamp
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -166,7 +168,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
-Project Link: [https://github.com/mikeyCos/cv-application](https://github.com/mikeyCos/cv-application)
+Project Link: [https://github.com/mikeyCos/members-only](https://github.com/mikeyCos/members-only)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -187,6 +189,7 @@ Project Link: [https://github.com/mikeyCos/cv-application](https://github.com/mi
 1. Where does it make more sense to authenticate? In a router or controller?
 2. How to prevent the `account/create` route when a user is logged in?
 3. How to prevent the user from going back to a login page?
+4. When does it make more sense to use one input for fullname instead of one input for first name and one input for last name?
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

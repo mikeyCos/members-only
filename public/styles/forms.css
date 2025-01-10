@@ -20,3 +20,8 @@
   position: unset;
   width: unset;
 }
+
+.form-item > label::after {
+  content: "*";
+  color: red;
+}

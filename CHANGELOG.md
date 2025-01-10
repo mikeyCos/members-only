@@ -1,5 +1,13 @@
 # Changelog
 ---
+### 10 JAN 2025
+- Changed module `createAccountForm.ejs` filename to `signupForm.ejs`.
+- Changed module `createAccount.ejs` filename to `signup.ejs`.
+- Changed module `accountValidator.js` filename to `signupValidator.js`.
+- Changed `DBNAME` in `.env` to a new local database name.
+- Created fullname, username, and email inputs in `signupForm.ejs` partial.
+- Commit before running `fly launch`.
+---
 ### 09 JAN 2025
 - Initial commit for `members-only` project.
 - Installed dependencies.

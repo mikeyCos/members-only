@@ -1,6 +1,10 @@
 const { Client } = require("pg");
 const { DATABASE_URL } = require("../config/environment");
 
+/*
+ * Create a accounts table first name, last name, email, password, member
+ * Create a messages table author, message, timestamp
+ */
 const CREATE_ACCOUNTS_TABLE_QUERY = `
 DROP TABLE IF EXISTS accounts;
 

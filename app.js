@@ -23,7 +23,7 @@ app.set("view engine", "ejs");
 // What to call this block?
 const sessionStore = new pgSession({
   pool: pool,
-  tableName: "members_sessions",
+  tableName: "account_sessions",
   createTableIfMissing: true,
 });
 

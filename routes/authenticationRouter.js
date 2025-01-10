@@ -1,10 +1,10 @@
 const { Router } = require("express");
 const {
   getLogin,
-  getCreateAccount,
+  getSignup,
   postLogin,
   postLogout,
-  postCreateAccount,
+  postSignup,
 } = require("../controllers/authenticationController");
 
 /*
@@ -26,11 +26,11 @@ const isAuthenticated = (req, res, next) => {
 
 // GET requests
 authenticationRouter.get("/login", getLogin);
-authenticationRouter.get("/create", getCreateAccount);
+authenticationRouter.get("/signup", getSignup);
 
 // POST requests
 authenticationRouter.post("/login", postLogin);
 authenticationRouter.post("/logout", postLogout);
-authenticationRouter.post("/create", postCreateAccount);
+authenticationRouter.post("/signup", postSignup);
 
 module.exports = authenticationRouter;

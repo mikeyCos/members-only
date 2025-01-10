@@ -11,6 +11,10 @@ const confirmPassword = (password, { req }) => {
  * Return a Promise or throw a error
  * https://express-validator.github.io/docs/guides/customizing/#implementing-a-custom-validator
  */
+const validateFullname = async (fullname) => {
+  const regex = new RegExp("(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})");
+};
+
 const validateUsername = async (username) => {
   // Test against regex
   // Need to make sure user name is not taken
@@ -28,6 +32,15 @@ const validateUsername = async (username) => {
 };
 
 const accountSchema = {
+  fullname: {
+    trim: true,
+    isLength: {
+      options: {
+        max: 12,
+      },
+    },
+    escape: true,
+  },
   username: {
     trim: true,
     custom: {
@@ -35,6 +48,12 @@ const accountSchema = {
     },
     errorMessage:
       "Username must be between 3 and 10 letters long. Dashes and underscores are the only acceptable symbols.",
+    escape: true,
+  },
+  email: {
+    trim: true,
+    isEmail: true,
+    errorMessage: "Invalid email address.",
     escape: true,
   },
   password: {
@@ -67,7 +86,7 @@ const accountSchema = {
   },
 };
 
-const validateCreateAccount = checkSchema(accountSchema, ["body"]);
+const validateSignup = checkSchema(accountSchema, ["body"]);
 
 // Does rendering a response in a validation middleware make sense?
 /* const validateAccount = [
@@ -88,4 +107,4 @@ const validateCreateAccount = checkSchema(accountSchema, ["body"]);
   },
 ]; */
 
-module.exports = validateCreateAccount;
+module.exports = validateSignup;

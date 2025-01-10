@@ -2,7 +2,7 @@ const { matchedData, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
-const validateCreateAccount = require("../validators/accountValidator");
+const validateSignup = require("../validators/signupValidator");
 const validateLogin = require("../validators/loginValidator");
 const { createAccount, getAccount } = require("../db/queries");
 
@@ -15,10 +15,10 @@ const authenticationController = {
     req.logout();
     res.redirect("/");
   }),
-  getCreateAccount: asyncHandler(async (req, res) => {
-    console.log("getCreateAccount running...");
+  getSignup: asyncHandler(async (req, res) => {
+    console.log("getSignup running...");
     console.log("req.user:", req.user);
-    res.render("createAccount");
+    res.render("signup");
   }),
   postLogin: [
     validateLogin,
@@ -67,16 +67,17 @@ const authenticationController = {
       res.redirect("/");
     });
   },
-  postCreateAccount: [
-    validateCreateAccount,
+  postSignup: [
+    validateSignup,
     asyncHandler(async (req, res, next) => {
-      console.log("postCreateAccount running after validateAccount...");
+      console.log("postSignup running after validateAccount...");
       const errors = validationResult(req);
       const inputs = matchedData(req, { onlyValidData: false });
 
       if (!errors.isEmpty()) {
-        console.log(errors.mapped());
-        return res.render("createAccount", {
+        console.log("errors.mapped():", errors.mapped());
+        console.log("inputs:", inputs);
+        return res.render("signup", {
           errors: errors.mapped(),
           inputs,
         });
