@@ -1,5 +1,12 @@
 # Changelog
 ---
+### 12 JAN 2025
+- Created `profileRouter.js`, and `profileController.js` modules.
+- Respectively renamed `authenticationRouter.js` and `authenticationController.js` modules to `accountRouter.js` and `accountController.js`.
+- Created `profileTabs` subdirectory.
+- Created `profileTabs.ejs`, `overview.ejs`, `placeholderA.ejs`, and `placeholderB.ejs` partials.
+- Navigating to `/account/view-profile/:username` will render a profile page with a navigation bar for profile tabs. Clicking on a profile tab will render the profile page at the appropriate tab.
+---
 ### 10 JAN 2025
 - Changed module `createAccountForm.ejs` filename to `signupForm.ejs`.
 - Changed module `createAccount.ejs` filename to `signup.ejs`.

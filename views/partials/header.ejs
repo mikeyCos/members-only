@@ -16,7 +16,7 @@
       </li>
 
       <% if (locals.currentUser) { %>
-        <li>Logged in as <%= currentUser.username %></li>
+        <li>Logged in as <a href="/account/view-profile/<%= currentUser.username %>"><%= currentUser.username %></a></li>
         <li>
           <form action="/account/logout" method="POST">
             <button type="submit">Log out</button>

@@ -1,13 +1,13 @@
 const pool = require("./pool");
 
-const createAccount = async ({ username, password }) => {
+const createAccount = async ({ fullname, email, username, password }) => {
   console.group("createAccount query running...");
   await pool.query(
     `
-    INSERT INTO accounts (username, password)
-      VALUES ($1, $2);
+    INSERT INTO accounts (fullname, email, username, password)
+      VALUES ($1, $2, $3, $4);
     `,
-    [username, password]
+    [fullname, email, username, password]
   );
 };
 

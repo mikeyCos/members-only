@@ -8,7 +8,8 @@ const { staticPaths, viewsPaths } = require("./paths/paths");
 const logger = require("./utils/logger");
 const indexRouter = require("./routes/indexRouter");
 const placeholderRouter = require("./routes/placeholderRouter");
-const authenticationRouter = require("./routes/authenticationRouter");
+const accountRouter = require("./routes/accountRouter");
+const profileRouter = require("./routes/profileRouter");
 const supportRouter = require("./routes/supportRouter");
 
 const app = express();
@@ -61,7 +62,8 @@ app.use((req, res, next) => {
 // Router-level
 app.use("/", indexRouter);
 app.use("/placeholderA", placeholderRouter);
-app.use("/account", authenticationRouter);
+app.use("/account", accountRouter);
+app.use("/account/view-profile", profileRouter);
 app.use("/support", supportRouter);
 
 app.use((req, res) => {
@@ -71,6 +73,7 @@ app.use((req, res) => {
 // Error middleware function
 app.use((err, req, res, next) => {
   console.log("error middleware running...");
+  console.log("err:", err);
   res.render("404", { title: "404 - Page Not Found" });
 });
 

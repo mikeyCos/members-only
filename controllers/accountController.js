@@ -6,7 +6,7 @@ const validateSignup = require("../validators/signupValidator");
 const validateLogin = require("../validators/loginValidator");
 const { createAccount, getAccount } = require("../db/queries");
 
-const authenticationController = {
+const accountController = {
   getLogin: asyncHandler(async (req, res) => {
     console.log("getLogin running...");
     res.render("login");
@@ -88,10 +88,15 @@ const authenticationController = {
     asyncHandler(async (req, res, next) => {
       try {
         // Valid and sanitized data
-        const { username, password } = matchedData(req);
-        bcrypt.hash(password, 10, async (err, hashedPassword) => {
+        const { fullname, email, username, password } = matchedData(req);
+        /* bcrypt.hash(password, 10, async (err, hashedPassword) => {
           if (err) return next(err);
-          await createAccount({ username, password: hashedPassword });
+          await createAccount({
+            fullname,
+            email,
+            username,
+            password: hashedPassword,
+          });
           const account = await getAccount({ username });
           console.log("account:", account);
 
@@ -100,6 +105,22 @@ const authenticationController = {
             console.log("login running after creating account...");
             res.redirect("/");
           });
+        }); */
+        const hashedPassword = await bcrypt.hash(password, 10);
+        await createAccount({
+          fullname,
+          email,
+          username,
+          password: hashedPassword,
+        });
+
+        const account = await getAccount({ username });
+        console.log("account:", account);
+
+        // Automatically login after creating account
+        req.login(account, (err) => {
+          console.log("login running after creating account...");
+          res.redirect("/");
         });
       } catch (err) {
         return next(err);
@@ -108,4 +129,4 @@ const authenticationController = {
   ],
 };
 
-module.exports = authenticationController;
+module.exports = accountController;
