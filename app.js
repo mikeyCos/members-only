@@ -9,6 +9,7 @@ const logger = require("./utils/logger");
 const indexRouter = require("./routes/indexRouter");
 const placeholderRouter = require("./routes/placeholderRouter");
 const accountRouter = require("./routes/accountRouter");
+const myAccountRouter = require("./routes/myAccountRouter");
 const profileRouter = require("./routes/profileRouter");
 const supportRouter = require("./routes/supportRouter");
 
@@ -63,6 +64,7 @@ app.use((req, res, next) => {
 app.use("/", indexRouter);
 app.use("/placeholderA", placeholderRouter);
 app.use("/account", accountRouter);
+app.use("/my-account", myAccountRouter);
 app.use("/account/view-profile", profileRouter);
 app.use("/support", supportRouter);
 
@@ -74,7 +76,7 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   console.log("error middleware running...");
   console.log("err:", err);
-  res.render("404", { title: "404 - Page Not Found" });
+  res.status(404).render("404", { error: err.msg ?? "Resource not found" });
 });
 
 app.listen(PORT, () => console.log(`Application running on port: ${PORT}`));

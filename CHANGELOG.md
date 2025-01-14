@@ -1,5 +1,11 @@
 # Changelog
 ---
+### 13 JAN 2025
+- Created `myAccountRouter.js`, and `myAccountController.js` modules.
+- Created `accountPosts.ejs`, `activateAccount.ejs`, and `manageAccount.ejs` pages.
+- "Profile not found" error message will render when a profile or account cannot be found in database.
+- `Manage` and `Activate` anchors on a profile for the user who is currently logged in.
+---
 ### 12 JAN 2025
 - Created `profileRouter.js`, and `profileController.js` modules.
 - Respectively renamed `authenticationRouter.js` and `authenticationController.js` modules to `accountRouter.js` and `accountController.js`.

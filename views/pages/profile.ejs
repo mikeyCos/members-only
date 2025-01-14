@@ -8,7 +8,7 @@
       <%# Navigation bar for account info %>
       <h2>Profile</h2>
       <%- include('./profileTabs') %>
-      <%- include(`./profileTabs/${profileTab ?? 'overview'}`) %>
+      <%- include(`./profileTabs/${locals.profileTab ?? 'overview'}`) %>
     </section>
   </main>
   <%- include('./footer') %>

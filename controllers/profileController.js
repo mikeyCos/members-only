@@ -7,20 +7,20 @@ const profileController = {
     console.log("setProfile running...");
     const { username } = req.params;
     const profile = await getAccount({ username });
-    if (!profile) return next("Profile not found");
+    if (!profile) next({ msg: "Profile not found" });
+
     res.locals.profile = profile;
     next();
   }),
   getProfile: asyncHandler(async (req, res) => {
     console.log("getProfile running...");
-    // What if username in req.params does not equal username in req.user?
     res.render("profile");
   }),
   setProfileTab: asyncHandler(async (req, res, next) => {
     console.log("switchProfileTab running...");
     // const tab = req.params.tab ?? "overview";
     const tab = req.params.tab;
-    res.locals.profileTab = tab;
+    if (tab) res.locals.profileTab = tab;
     next();
   }),
 };

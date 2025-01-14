@@ -89,24 +89,8 @@ const accountController = {
       try {
         // Valid and sanitized data
         const { fullname, email, username, password } = matchedData(req);
-        /* bcrypt.hash(password, 10, async (err, hashedPassword) => {
-          if (err) return next(err);
-          await createAccount({
-            fullname,
-            email,
-            username,
-            password: hashedPassword,
-          });
-          const account = await getAccount({ username });
-          console.log("account:", account);
-
-          // Automatically login after creating account
-          req.login(account, (err) => {
-            console.log("login running after creating account...");
-            res.redirect("/");
-          });
-        }); */
         const hashedPassword = await bcrypt.hash(password, 10);
+
         await createAccount({
           fullname,
           email,

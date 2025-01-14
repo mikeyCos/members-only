@@ -16,10 +16,6 @@ const getAccount = async ({ username, id }) => {
   console.log("username:", username);
   console.log("id:", id);
 
-  const { rows: accounts } = await pool.query(`
-  SELECT * FROM accounts;`);
-  console.log("accounts:", accounts);
-
   const {
     rows: [account],
   } = await pool.query(

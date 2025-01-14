@@ -2,6 +2,7 @@ const { Router } = require("express");
 const {
   getLogin,
   getSignup,
+  getAccountPosts,
   postLogin,
   postLogout,
   postSignup,

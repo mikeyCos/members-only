@@ -4,6 +4,11 @@
       <li><a href="/account/view-profile/<%= profile.username %>">Overview</a></li>
       <li><a href="/account/view-profile/<%= profile.username %>/placeholderA">PlaceholderA</a></li>
       <li><a href="/account/view-profile/<%= profile.username %>/placeholderB">PlaceholderB</a></li>
+      <% if(currentUser.id === profile.id) { %>
+        <li><a href="/my-account/<%= currentUser.username %>/manage">Manage</a></li>
+        <li><a href="/my-account/<%= currentUser.username %>/activate">Activate</a></li>
+      <% } %>
+      <li><a href="/account/view-posts/<%= profile.username %>">View Posts</a></li>
     </ul>
   </nav>
 </header>

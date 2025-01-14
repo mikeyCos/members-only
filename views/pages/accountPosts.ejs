@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./head', { title: 'Account Posts' }) %>
+<body>
+  <%- include('./header') %>
+  <main>
+    <section id="activate-account">
+      <%# Navigation bar for manage account %>
+      <header>
+        <nav>
+          <ul>
+            <li><a href="/account/view-profile/<%= profile.username %>">View Profile</a></li>
+          </ul>
+        </nav>
+      </header>
+      <h2>Account Posts</h2>
+    </section>
+  </main>
+  <%- include('./footer') %>
+</body>
+</html>
