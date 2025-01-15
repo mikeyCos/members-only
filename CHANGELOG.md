@@ -1,5 +1,13 @@
 # Changelog
 ---
+### 15 JAN 2025
+- 
+---
+### 14 JAN 2025
+- Input errors for the login form will only show if `locals.errors.*` exists.
+- Username and password inputs will now be re-entered to the form after invalid inputs.
+- Deleted project locally and re-cloned repository after git error `fatal: bad object HEAD`.
+---
 ### 13 JAN 2025
 - Created `myAccountRouter.js`, and `myAccountController.js` modules.
 - Created `accountPosts.ejs`, `activateAccount.ejs`, and `manageAccount.ejs` pages.

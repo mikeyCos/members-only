@@ -2,13 +2,17 @@
   <ul>
     <li class="form-item">
       <label for="username">Username</label>
-      <input name="username" id="username" type="text">
-      <p class="input-error<%= locals.errors?.username && ' active-error'%>"><%= locals.errors?.username.msg %></p>
+      <input name="username" id="username" type="text" value="<%= locals.inputs?.username %>">
+      <% if (locals.errors?.username) { %>
+        <p class="input-error active-error"><%= errors.username.msg %></p>
+      <% } %>
     </li>
     <li class="form-item">
       <label for="password">Password</label>
-      <input name="password" id="password" type="password">
-      <p class="input-error<%= locals.errors?.password && ' active-error'%>"><%= locals.errors?.password.msg %></p>
+      <input name="password" id="password" type="password" value="<%= locals.inputs?.password %>">
+      <% if (locals.errors?.password) { %>
+        <p class="input-error active-error"><%= errors?.password.msg %></p>
+      <% } %>
     </li>
     <% if(locals.message) { %>
       <p><%= locals.message %></p>
