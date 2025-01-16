@@ -1,0 +1,16 @@
+<form action="/my-account/<%= currentUser.username %>/activate-key" method="POST">
+  <ul>
+    <li class="form-item">
+      <label for="key">Activate Key</label>
+      <input name="key" id="key" type="text" placeholder="Fullname" value="<%= locals.inputs?.key %>">
+      <% if (locals.errors?.key) { %>
+        <p class="input-error active-error"><%= errors.key.msg %></p>
+      <% } %>
+
+      <% if (locals.success) { %>
+        <p><%= success.msg %></p>
+      <% } %>
+    </li>
+  </ul>
+  <button type="submit">Activate</button>
+</form>

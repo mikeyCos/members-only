@@ -1,4 +1,6 @@
 const asyncHandler = require("express-async-handler");
+const { matchedData, validationResult } = require("express-validator");
+const validateKey = require("../validators/keyValidator");
 
 const myAccountController = {
   getMyAccount: asyncHandler(async (req, res) => {
@@ -10,10 +12,31 @@ const myAccountController = {
     console.log("getManage running...");
     res.render("manageAccount");
   }),
-  getActivate: asyncHandler(async (req, res) => {
+  getActivateKey: asyncHandler(async (req, res) => {
     console.log("getActivate running...");
-    res.render("activateAccount");
+    res.render("activateKey");
   }),
+  postActivateKey: [
+    validateKey,
+    asyncHandler(async (req, res) => {
+      const errors = validationResult(req);
+      const inputs = matchedData(req, { onlyValidData: false });
+      if (!errors.isEmpty()) {
+        console.log(errors.mapped());
+        console.log("inputs:", inputs);
+        return res.render("activateKey", {
+          errors: errors.mapped(),
+          inputs,
+        });
+      }
+
+      next();
+    }),
+    asyncHandler(async (req, res) => {
+      // Display success message?
+      res.render("activateKey", {});
+    }),
+  ],
 };
 
 module.exports = myAccountController;

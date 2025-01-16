@@ -1,7 +1,12 @@
 # Changelog
 ---
 ### 15 JAN 2025
-- 
+- Two routers are used on the the base URL `/account`.
+- Changed mount path for `profileRouter` from `/username/:tab?` to `/view-profile/:username/:tab?`.
+- Moved `isAuthenticated` middleware from `accountRouter.js` module to `myAccountRouter.js` module.
+- Any requests on the base URL `/my-account` will check if the user is logged in by `req.isAuthenticated()`; if `req.isAuthenticated` returns false, set the HTTP status to `401` and render `401.ejs` page. 
+- Created `postsRouter.js` and `postsController.js` modules.
+- Created`activateKey.ejs` page and `activateKeyForm.ejs` partial.
 ---
 ### 14 JAN 2025
 - Input errors for the login form will only show if `locals.errors.*` exists.

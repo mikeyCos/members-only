@@ -1,7 +1,6 @@
 const { Client } = require("pg");
 const { DATABASE_URL } = require("../config/environment");
 const bcrypt = require("bcryptjs");
-const { createAccount } = require("./queries");
 
 /*
  * Create a accounts table fullname, email, password, member
@@ -56,14 +55,6 @@ const CREATE_ACCOUNTS_TABLE_QUERY = `
   );
 `;
 
-const INSERT_ACCOUNTS_TABLE_QUERY = `
-  INSERT INTO accounts (fullname, email, username, password)
-    VALUES
-      ('Bill Dauterive', 'bill.d@gmail.com', 'bill_dozer', 'Test123!'),
-      ('Kahn Souphanousinphone', 'kahntheman@gmail.com', 'kBanana', 'Foobar2#'),
-      ('Peggy Hill', 'peggyTeaches@gmail.com', 'spa-peggy', 'inEspan456*');
-`;
-
 const CREATE_USER_ROLES_TABLE_QUERY = `
   DROP TABLE IF EXISTS user_roles;
 
@@ -78,7 +69,8 @@ const CREATE_ROLES_TABLE_QUERY = `
 
   CREATE TABLE roles (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    role_name varchar ( 255 )
+    role_name varchar ( 255 ),
+    key varchar ( 255 )
   );
 `;
 

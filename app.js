@@ -11,6 +11,7 @@ const placeholderRouter = require("./routes/placeholderRouter");
 const accountRouter = require("./routes/accountRouter");
 const myAccountRouter = require("./routes/myAccountRouter");
 const profileRouter = require("./routes/profileRouter");
+const postsRouter = require("./routes/postsRouter");
 const supportRouter = require("./routes/supportRouter");
 
 const app = express();
@@ -63,9 +64,8 @@ app.use((req, res, next) => {
 // Router-level
 app.use("/", indexRouter);
 app.use("/placeholderA", placeholderRouter);
-app.use("/account", accountRouter);
+app.use("/account", [accountRouter, profileRouter, postsRouter]);
 app.use("/my-account", myAccountRouter);
-app.use("/account/view-profile", profileRouter);
 app.use("/support", supportRouter);
 
 app.use((req, res) => {

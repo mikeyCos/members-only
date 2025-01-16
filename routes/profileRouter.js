@@ -8,9 +8,9 @@ const {
 const profileRouter = new Router();
 
 // Router-level
-profileRouter.use("/:username/:tab?", [setProfile, setProfileTab]);
+profileRouter.use("/view-profile/:username/:tab?", [setProfile, setProfileTab]);
 
 // GET requests
-profileRouter.get("/:username/:tab?", getProfile);
+profileRouter.get("/view-profile/:username/:tab?", getProfile);
 
 module.exports = profileRouter;

@@ -27,6 +27,7 @@ const accountController = {
       const inputs = matchedData(req, { onlyValidData: false });
       if (!errors.isEmpty()) {
         console.log(errors.mapped());
+        console.log("inputs:", inputs);
         return res.render("login", {
           errors: errors.mapped(),
           inputs,
@@ -57,7 +58,7 @@ const accountController = {
     },
     (req, res) => {
       console.log("postLogin running after authentication....");
-      res.redirect("/");
+      res.redirect("/my-account");
     },
   ],
   postLogout: (req, res, next) => {

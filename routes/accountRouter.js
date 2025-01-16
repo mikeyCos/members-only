@@ -7,7 +7,6 @@ const {
   postLogout,
   postSignup,
 } = require("../controllers/accountController.js");
-
 /*
  * This router handles responsibilities for account actions
  * Current account actions include: login, logout, and create
@@ -17,13 +16,6 @@ const {
  * https://stackoverflow.com/questions/72376698/redirect-even-if-user-uses-back-button-node-js
  */
 const accountRouter = new Router();
-
-const isAuthenticated = (req, res, next) => {
-  console.log("isAuthenticated running...");
-  // If an account is logged in, redirect to the root
-  if (req.isAuthenticated()) return res.redirect("/");
-  next();
-};
 
 // GET requests
 accountRouter.get("/login", getLogin);

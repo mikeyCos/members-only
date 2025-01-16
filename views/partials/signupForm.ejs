@@ -2,7 +2,7 @@
   <ul>
     <li class="form-item">
       <label for="fullname">Fullname</label>
-      <input name="fullname" id="fullname" type="text" type="text" placeholder="Fullname" value="<%= locals.inputs?.fullname %>">
+      <input name="fullname" id="fullname" type="text" placeholder="Fullname" value="<%= locals.inputs?.fullname %>">
       <% if (locals.errors?.fullname) { %>
         <p class="input-error active-error"><%= errors.fullname.msg %></p>
       <% } %>
