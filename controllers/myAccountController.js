@@ -18,7 +18,7 @@ const myAccountController = {
   }),
   postActivateKey: [
     validateKey,
-    asyncHandler(async (req, res) => {
+    asyncHandler(async (req, res, next) => {
       const errors = validationResult(req);
       const inputs = matchedData(req, { onlyValidData: false });
       if (!errors.isEmpty()) {
@@ -34,7 +34,9 @@ const myAccountController = {
     }),
     asyncHandler(async (req, res) => {
       // Display success message?
-      res.render("activateKey", {});
+      console.log("req.user:", req.user);
+      console.log("res.locals.currentUser:", res.locals.currentUser);
+      res.render("activateKey", { success: "Key activated" });
     }),
   ],
 };

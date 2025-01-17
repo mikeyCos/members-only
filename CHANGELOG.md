@@ -1,5 +1,12 @@
 # Changelog
 ---
+### 17 JAN 2025
+- 
+---
+### 16 JAN 2025
+- Created `populateRolesTable` asynchronous function in `initdb.js` module.
+- Created `CREATE_ACTIVATION_KEYS_QUERY` string value; the query will create `activation_keys` table with a `role_id` (foreign key) column and a `activation_key` character column.
+---
 ### 15 JAN 2025
 - Two routers are used on the the base URL `/account`.
 - Changed mount path for `profileRouter` from `/username/:tab?` to `/view-profile/:username/:tab?`.

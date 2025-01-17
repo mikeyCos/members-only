@@ -28,6 +28,17 @@ const accountsArr = [
   },
 ];
 
+const rolesArr = [
+  {
+    name: "admin",
+    key: "pitaya",
+  },
+  {
+    name: "member",
+    key: "toucan",
+  },
+];
+
 const populateAccountsTable = async (accounts, client) => {
   for (const account of accounts) {
     const { fullname, email, username, password } = account;
@@ -43,9 +54,31 @@ const populateAccountsTable = async (accounts, client) => {
   }
 };
 
-const CREATE_ACCOUNTS_TABLE_QUERY = `
-  DROP TABLE IF EXISTS accounts;
+const populateRolesTable = async (roles, client) => {
+  /*
+   * Using CTE "WITH" clause
+   * https://stackoverflow.com/questions/56147837/how-insert-data-to-parent-and-child-tables
+   */
+  for (const role of roles) {
+    const { name, key } = role;
+    await client.query(
+      `
+      WITH insert_child AS (
+        INSERT INTO roles (role_name)
+        VALUES
+          ($1)
+        RETURNING id
+      )
+  
+      INSERT INTO activation_keys VALUES
+      ((SELECT id FROM insert_child), $2);
+      `,
+      [name, key]
+    );
+  }
+};
 
+const CREATE_ACCOUNTS_TABLE_QUERY = `
   CREATE TABLE accounts (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     fullname VARCHAR ( 255 ),
@@ -56,41 +89,50 @@ const CREATE_ACCOUNTS_TABLE_QUERY = `
 `;
 
 const CREATE_USER_ROLES_TABLE_QUERY = `
-  DROP TABLE IF EXISTS user_roles;
-
   CREATE TABLE user_roles (
+    account_id INTEGER,
+    role_id INTEGER,
     FOREIGN KEY (account_id) REFERENCES accounts(id),
     FOREIGN KEY (role_id) REFERENCES roles(id)
   );
 `;
 
 const CREATE_ROLES_TABLE_QUERY = `
-  DROP TABLE IF EXISTS roles;
-
   CREATE TABLE roles (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    role_name varchar ( 255 ),
-    key varchar ( 255 )
+    role_name varchar ( 255 )
   );
 `;
 
-const INSERT_ROLES_TABLE_QUERY = `
-  INSERT INTO roles (role_name)
-    VALUES
-      ('admin'),
-      ('member');
+const CREATE_ACTIVATION_KEYS_QUERY = `
+  CREATE TABLE activation_keys (
+    role_id INTEGER,
+    FOREIGN KEY (role_id) REFERENCES roles(id),
+    activation_key varchar ( 255 )
+  );
 `;
 
 // What is the appropriate size value for TEXT data type?
 // What is 500 characters to bytes?
 // Does this depend on the character encoder and programming language?
 const CREATE_MESSAGES_TABLE_QUERY = `
-  DROP TABLE IF EXISTS messages;
-
   CREATE TABLE messages (
     FOREIGN KEY (account_id) REFERENCES accounts(id),
     message TEXT ( 32767 )
   );
+`;
+
+const foo = `
+  INSERT INTO user_roles (account_id, role_id)
+    VALUES ((SELECT id FROM accounts WHERE id = 2), (SELECT role_id FROM activation_keys WHERE activation_key = 'toucan'));
+`;
+
+const DROP_TABLES = `
+  DROP TABLE IF EXISTS accounts CASCADE;
+  DROP TABLE IF EXISTS user_roles;
+  DROP TABLE IF EXISTS roles CASCADE;
+  DROP TABLE IF EXISTS activation_keys;
+  DROP TABLE IF EXISTS messages;
 `;
 
 const initDB = async () => {
@@ -99,7 +141,12 @@ const initDB = async () => {
   });
 
   await client.connect();
+  await client.query(DROP_TABLES);
   await client.query(CREATE_ACCOUNTS_TABLE_QUERY);
+  await client.query(CREATE_ROLES_TABLE_QUERY);
+  await client.query(CREATE_USER_ROLES_TABLE_QUERY);
+  await client.query(CREATE_ACTIVATION_KEYS_QUERY);
+  await populateRolesTable(rolesArr, client);
   await populateAccountsTable(accountsArr, client);
   await client.end();
 };

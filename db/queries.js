@@ -29,6 +29,18 @@ const getAccount = async ({ username, id }) => {
   return account;
 };
 
+const activateRole = async ({ accountID, key }) => {
+  // Need account_id
+  // Need role_id
+  await pool.query(
+    `
+    INSERT INTO user_roles ()
+      VALUES ()
+    `,
+    [accountID, key]
+  );
+};
+
 module.exports = {
   createAccount,
   getAccount,
