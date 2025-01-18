@@ -71,9 +71,17 @@ const populateRolesTable = async (roles, client) => {
       )
   
       INSERT INTO activation_keys VALUES
-      ((SELECT id FROM insert_child), $2);
+        ((SELECT id FROM insert_child),
+          (SELECT
+            UPPER(
+              SUBSTRING (
+                (SELECT gen_random_uuid()::text), '(([0-9a-z]{4}\\-){3}([0-9a-z]{4}))'
+              )
+            )
+          )
+        );
       `,
-      [name, key]
+      [name]
     );
   }
 };
@@ -88,10 +96,13 @@ const CREATE_ACCOUNTS_TABLE_QUERY = `
   );
 `;
 
+// As a group, account_id and role_id must be unique values; no duplicates
+// https://neon.tech/postgresql/postgresql-tutorial/postgresql-unique-constraint#creating-a-unique-constraint-on-multiple-columns
 const CREATE_USER_ROLES_TABLE_QUERY = `
   CREATE TABLE user_roles (
     account_id INTEGER,
     role_id INTEGER,
+    UNIQUE(account_id, role_id),
     FOREIGN KEY (account_id) REFERENCES accounts(id),
     FOREIGN KEY (role_id) REFERENCES roles(id)
   );
@@ -100,7 +111,7 @@ const CREATE_USER_ROLES_TABLE_QUERY = `
 const CREATE_ROLES_TABLE_QUERY = `
   CREATE TABLE roles (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    role_name varchar ( 255 )
+    role_name VARCHAR ( 255 )
   );
 `;
 
@@ -108,7 +119,7 @@ const CREATE_ACTIVATION_KEYS_QUERY = `
   CREATE TABLE activation_keys (
     role_id INTEGER,
     FOREIGN KEY (role_id) REFERENCES roles(id),
-    activation_key varchar ( 255 )
+    activation_key VARCHAR ( 255 ) UNIQUE
   );
 `;
 

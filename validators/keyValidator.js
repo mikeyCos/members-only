@@ -1,4 +1,7 @@
 const { checkSchema } = require("express-validator");
+const { getRoleKey } = require("../db/queries");
+
+const keyValidator = async (key) => {};
 
 const keySchema = {
   key: {
@@ -7,6 +10,9 @@ const keySchema = {
       negated: true,
     },
     errorMessage: "Key cannot be empty.",
+    custom: {
+      options: keyValidator,
+    },
     escape: true,
   },
 };

@@ -1,7 +1,8 @@
 # Changelog
 ---
 ### 17 JAN 2025
-- 
+- Grouped `account_id` and `role_id` columns in `user_roles` table as a unique pair; an account can be in multiple roles, but cannot be in the same role multiple instances.
+- The values for the `activation_key` column are now a substring of `gen_random_uuid()::text` with the following format: `XXXX-XXXX-XXXX-XXXX`.
 ---
 ### 16 JAN 2025
 - Created `populateRolesTable` asynchronous function in `initdb.js` module.
