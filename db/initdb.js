@@ -1,13 +1,14 @@
 const { Client } = require("pg");
 const { DATABASE_URL } = require("../config/environment");
 const bcrypt = require("bcryptjs");
+const { getAllMessages } = require("./queries");
 
 /*
  * Create a accounts table fullname, email, password, member
- * Create a messages table author, message, timestamp
+ * Create a posts table author, message, timestamp
  */
 
-const accountsArr = [
+const accounts = [
   {
     fullname: "Bill Dauterive",
     email: "bill.d@gmail.com",
@@ -28,19 +29,24 @@ const accountsArr = [
   },
 ];
 
-const rolesArr = [
+const roles = [
   {
     name: "admin",
-    key: "pitaya",
   },
   {
     name: "member",
-    key: "toucan",
   },
 ];
 
-const populateAccountsTable = async (accounts, client) => {
-  for (const account of accounts) {
+const posts = [
+  {
+    accountID: 1,
+    text: "Ut est nisi, finibus at varius ac, aliquam nec erat. Fusce sit amet dignissim metus. Nulla facilisi. Nam rutrum ante sapien. Nulla maximus tortor sit amet dignissim efficitur. Vivamus pellentesque, eros id ullamcorper sagittis, enim mauris consectetur neque, a scelerisque erat ipsum in sapien",
+  },
+];
+
+const populateAccountsTable = async (accountsArr, client) => {
+  for (const account of accountsArr) {
     const { fullname, email, username, password } = account;
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -54,13 +60,13 @@ const populateAccountsTable = async (accounts, client) => {
   }
 };
 
-const populateRolesTable = async (roles, client) => {
+const populateRolesTable = async (rolesArr, client) => {
   /*
    * Using CTE "WITH" clause
    * https://stackoverflow.com/questions/56147837/how-insert-data-to-parent-and-child-tables
    */
-  for (const role of roles) {
-    const { name, key } = role;
+  for (const role of rolesArr) {
+    const { name } = role;
     await client.query(
       `
       WITH insert_child AS (
@@ -82,6 +88,19 @@ const populateRolesTable = async (roles, client) => {
         );
       `,
       [name]
+    );
+  }
+};
+
+const populatePostsTable = async (postsArr, client) => {
+  for (const post of postsArr) {
+    const { accountID, text } = post;
+    await client.query(
+      `
+      INSERT INTO posts
+        VALUES ($1, $2)
+      `,
+      [accountID, text]
     );
   }
 };
@@ -126,16 +145,12 @@ const CREATE_ACTIVATION_KEYS_QUERY = `
 // What is the appropriate size value for TEXT data type?
 // What is 500 characters to bytes?
 // Does this depend on the character encoder and programming language?
-const CREATE_MESSAGES_TABLE_QUERY = `
-  CREATE TABLE messages (
+const CREATE_POSTS_TABLE_QUERY = `
+  CREATE TABLE posts (
+    account_id INTEGER,
     FOREIGN KEY (account_id) REFERENCES accounts(id),
-    message TEXT ( 32767 )
+    post TEXT
   );
-`;
-
-const foo = `
-  INSERT INTO user_roles (account_id, role_id)
-    VALUES ((SELECT id FROM accounts WHERE id = 2), (SELECT role_id FROM activation_keys WHERE activation_key = 'toucan'));
 `;
 
 const DROP_TABLES = `
@@ -143,7 +158,7 @@ const DROP_TABLES = `
   DROP TABLE IF EXISTS user_roles;
   DROP TABLE IF EXISTS roles CASCADE;
   DROP TABLE IF EXISTS activation_keys;
-  DROP TABLE IF EXISTS messages;
+  DROP TABLE IF EXISTS posts;
 `;
 
 const initDB = async () => {
@@ -157,8 +172,10 @@ const initDB = async () => {
   await client.query(CREATE_ROLES_TABLE_QUERY);
   await client.query(CREATE_USER_ROLES_TABLE_QUERY);
   await client.query(CREATE_ACTIVATION_KEYS_QUERY);
-  await populateRolesTable(rolesArr, client);
-  await populateAccountsTable(accountsArr, client);
+  await client.query(CREATE_POSTS_TABLE_QUERY);
+  await populateRolesTable(roles, client);
+  await populateAccountsTable(accounts, client);
+  await populatePostsTable(posts, client);
   await client.end();
 };
 

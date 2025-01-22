@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const { matchedData, validationResult } = require("express-validator");
 const validateKey = require("../validators/keyValidator");
+const { assignUserRole } = require("../db/queries");
 
 const myAccountController = {
   getMyAccount: asyncHandler(async (req, res) => {
@@ -21,6 +22,7 @@ const myAccountController = {
     asyncHandler(async (req, res, next) => {
       const errors = validationResult(req);
       const inputs = matchedData(req, { onlyValidData: false });
+      console.log("inputs:", inputs);
       if (!errors.isEmpty()) {
         console.log(errors.mapped());
         console.log("inputs:", inputs);
@@ -30,13 +32,14 @@ const myAccountController = {
         });
       }
 
+      const { key } = inputs;
+      const { id: accountID } = req.user;
+      await assignUserRole({ accountID, key });
       next();
     }),
     asyncHandler(async (req, res) => {
       // Display success message?
-      console.log("req.user:", req.user);
-      console.log("res.locals.currentUser:", res.locals.currentUser);
-      res.render("activateKey", { success: "Key activated" });
+      res.render("activateKey", { success: { msg: "Key activated" } });
     }),
   ],
 };

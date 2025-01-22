@@ -11,71 +11,135 @@ const createAccount = async ({ fullname, email, username, password }) => {
   );
 };
 
-const getAccount = async ({ username, id }) => {
+/*
+  SELECT accounts.username, ARRAY_AGG(role_name) AS roles FROM accounts
+  LEFT JOIN roles ON roles.id = ANY(SELECT role_id FROM user_roles WHERE account_id = 1) AND accounts.id = 1
+  WHERE accounts.id = 1
+  GROUP BY accounts.username;
+
+  SELECT *, (SELECT ARRAY_AGG(role_name) FROM roles WHERE  roles.id = ANY(SELECT role_id FROM user_roles WHERE account_id = 1)) AS roles FROM accounts WHERE id = 1;
+ */
+
+const getAccount = async ({ id, username }) => {
   console.log("getAccount query running...");
   console.log("username:", username);
   console.log("id:", id);
-
+  // https://stackoverflow.com/questions/55375533/postgresql-how-to-join-tables-on-array-column
+  // https://stackoverflow.com/questions/12808189/setting-column-values-as-column-names-in-the-sql-query-result
   const {
     rows: [account],
   } = await pool.query(
     `
-    SELECT * FROM accounts
-      WHERE username = $1 OR id = $2
+    SELECT *,
+    (SELECT ARRAY_AGG(role_name) FROM roles
+      WHERE roles.id = ANY(SELECT role_id FROM user_roles WHERE account_id = accounts.id)
+    ) AS roles
+    FROM accounts WHERE id = $1 OR username = $2;
     `,
-    [username, id]
+    [id, username]
   );
   console.log("getAccount return value:", account);
   return account;
 };
 
-const getRoleKey = async ({ key }) => {
+const keyExists = async ({ accountID, key }) => {
+  console.log("keyExists running...");
+  // If key exists in activation_keys table
+  //  If account has role return 0
+  //  Else return 1
+  // Else Return 0
+  // Should this query be separated? In other words, one query for keys, and one query for roles.
   const {
-    rows: [roleKey],
+    rows: [{ exists }],
   } = await pool.query(
     `
-    SELECT EXISTS
-      (SELECT 1 FROM activation_keys
-        WHERE activation_key = $1
-      )::integer;
+    SELECT
+    CASE
+      WHEN
+        (SELECT EXISTS(SELECT * FROM activation_keys WHERE activation_key = $2))
+      THEN
+        (SELECT
+          CASE
+            WHEN
+              (SELECT EXISTS(SELECT * FROM activation_keys
+              LEFT JOIN user_roles ON user_roles.role_id = activation_keys.role_id
+              WHERE activation_key = $2 AND account_id = $1))
+            THEN 0
+            ELSE 1
+          END)
+      ELSE 0
+    END AS exists;
     `,
-    [key]
+    [accountID, key]
   );
 
-  return roleKey;
+  return exists;
 };
 
 const assignUserRole = async ({ accountID, key }) => {
-  // Key could be the following formats:
-  // XXXX-XXXX-XXXX-XXXX, XXXXXXXXXXXXX, or XXXX XXXX XXXX XXXX
-
-  // Works for XXXX-XXXX-XXXX-XXXX and XXXX XXXX XXXX XXXX
-  // SELECT REGEXP_REPLACE('A591 B8CB 4FF0 B3C6', '([^0-9A-Z]+)', '-', 'g');
-  // SELECT UNNEST(REGEXP_MATCHES('A591-B8CB-4FF0-B3C6', '([0-9A-Z]{4})', 'g'));
-
-  // Works for XXXXXXXXXXXX
-  // SELECT REGEXP_REPLACE('A591B8CB4FF0B3C6', '([0-9A-Z]{4})([0-9A-Z]{4})([0-9A-Z]{4})([0-9A-Z]{4})', '\1-\2-\3-\4');
-
-  // SELECT * FROM activation_keys WHERE REPLACE(REPLACE(activation_key, '-', ''), ' ', '') = (SELECT REGEXP_REPLACE('A591B8CB4FF0B3C6', '([^0-9A-Z]+)', '', 'g'));
+  /* Original query
+   * INSERT INTO user_roles (account_id, role_id)
+   *  VALUES
+   *    ((SELECT id FROM accounts WHERE id = $1),
+   *    (SELECT role_id FROM activation_keys
+   *      WHERE (SELECT REGEXP_REPLACE(activation_key, '([^0-9A-Z]+)', '', 'g')) =
+   *        (SELECT REGEXP_REPLACE($2, '([^0-9A-Z]+)', '', 'g'))
+   *      )
+   *    );
+   */
+  // SELECT REGEXP_REPLACE(activation_key, '([^0-9A-Z]+)', '', 'g')
+  // vs
+  // SELECT TRANSLATE(activation_key, '-', '')
   await pool.query(
     `
     INSERT INTO user_roles (account_id, role_id)
       VALUES
         ((SELECT id FROM accounts WHERE id = $1),
         (SELECT role_id FROM activation_keys
-          WHERE REPLACE(
-            REPLACE(activation_key, '-', ''), ' ', '') =
-            (SELECT REGEXP_REPLACE($2, '([^0-9A-Z]+)', '', 'g'))
-          )
-        );
+          WHERE activation_key = $2
+        ));
     `,
     [accountID, key]
   );
 };
 
+const insertPost = async ({ accountID, text }) => {
+  await pool.query(
+    `
+    INSERT INTO posts
+      VALUES (accountID, text)
+    `
+  );
+};
+
+const getAccountPosts = async ({ accountID }) => {
+  const { rows: accountPosts } = await pool.query(
+    `
+    SELECT * FROM posts
+      WHERE account_id = $1;
+    `,
+    [accountID]
+  );
+
+  return accountPosts;
+};
+
+const getAllPosts = async () => {
+  const { rows: posts } = await pool.query(
+    `
+    SELECT * FROM posts;
+    `
+  );
+
+  return posts;
+};
+
 module.exports = {
   createAccount,
   getAccount,
-  getRoleKey,
+  keyExists,
   assignUserRole,
+  insertPost,
+  getAccountPosts,
+  getAllPosts,
 };

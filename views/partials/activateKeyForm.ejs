@@ -2,7 +2,7 @@
   <ul>
     <li class="form-item">
       <label for="key">Activate Key</label>
-      <input name="key" id="key" type="text" placeholder="Fullname" value="<%= locals.inputs?.key %>">
+      <input name="key" id="key" type="text" value="<%= locals.inputs?.key %>">
       <% if (locals.errors?.key) { %>
         <p class="input-error active-error"><%= errors.key.msg %></p>
       <% } %>

@@ -1,0 +1,12 @@
+<form action="#" method="POST">
+  <ul>
+    <li class="form-item">
+      <label for="post">Post</label>
+      <input name="post" id="post" type="text" value="<%= locals.inputs?.post %>">
+      <% if (locals.errors?.post) { %>
+        <p class="input-error active-error"><%= errors.post.msg %></p>
+      <% } %>
+    </li>
+  </ul>
+  <button type="submit">Post</button>
+</form>

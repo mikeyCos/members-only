@@ -190,6 +190,7 @@ Project Link: [https://github.com/mikeyCos/members-only](https://github.com/mike
 2. How to prevent the `account/create` route when a user is logged in?
 3. How to prevent the user from going back to a login page?
 4. When does it make more sense to use one input for fullname instead of one input for first name and one input for last name?
+5. When does it make more sent to sanitize? Before or after validating?
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
