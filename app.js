@@ -11,8 +11,8 @@ const placeholderRouter = require("./routes/placeholderRouter");
 const accountRouter = require("./routes/accountRouter");
 const myAccountRouter = require("./routes/myAccountRouter");
 const profileRouter = require("./routes/profileRouter");
-const postsRouter = require("./routes/postsRouter");
 const supportRouter = require("./routes/supportRouter");
+const hasRole = require("./utils/hasRole");
 
 const app = express();
 
@@ -52,11 +52,21 @@ app.use(express.urlencoded({ extended: true }));
 // Application-level
 // app.use(logger);
 
+// An idea for verifying roles
+const verifyRoles = (roles) => {
+  return (req, res, next) => {
+    if (!roles) next();
+  };
+};
+
 app.use((req, res, next) => {
   console.log("application-level middleware running...");
   console.log("req.session:", req.session);
   console.log("req.user:", req.user);
   console.log("req.originalUrl:", req.originalUrl);
+  res.locals.utils = {
+    hasRole,
+  };
   res.locals.currentUser = req.user;
   next();
 });
@@ -64,7 +74,7 @@ app.use((req, res, next) => {
 // Router-level
 app.use("/", indexRouter);
 app.use("/placeholderA", placeholderRouter);
-app.use("/account", [accountRouter, profileRouter, postsRouter]);
+app.use("/account", [accountRouter, profileRouter]);
 app.use("/my-account", myAccountRouter);
 app.use("/support", supportRouter);
 

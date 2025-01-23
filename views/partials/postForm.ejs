@@ -1,8 +1,8 @@
-<form action="#" method="POST">
+<form action="/" method="POST">
   <ul>
     <li class="form-item">
       <label for="post">Post</label>
-      <input name="post" id="post" type="text" value="<%= locals.inputs?.post %>">
+      <textarea name="post" id="post" placeholder="What is happening?!"></textarea>
       <% if (locals.errors?.post) { %>
         <p class="input-error active-error"><%= errors.post.msg %></p>
       <% } %>

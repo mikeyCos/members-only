@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const { getAccount } = require("../db/queries");
+const { getAccount, getAccountPosts } = require("../db/queries");
 
 const profileController = {
   setProfile: asyncHandler(async (req, res, next) => {
@@ -15,6 +15,14 @@ const profileController = {
   getProfile: asyncHandler(async (req, res) => {
     console.log("getProfile running...");
     res.render("profile");
+  }),
+  getProfilePosts: asyncHandler(async (req, res) => {
+    // Show all posts corresponding to the req.params.username
+    console.log("getProfilePosts running...");
+    const { id: accountID } = res.locals.profile;
+    const posts = await getAccountPosts({ accountID });
+    console.log("posts:", posts);
+    res.render("accountPosts", { posts });
   }),
   setProfileTab: asyncHandler(async (req, res, next) => {
     console.log("switchProfileTab running...");

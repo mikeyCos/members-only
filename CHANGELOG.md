@@ -1,10 +1,22 @@
 # Changelog
 ---
+### 23 JAN 2025
+- 
+---
+### 22 JAN 2025
+- All posts can be rendered to the homepage.
+- Currently, post author and creation timestamp can be seen by anyone who is logged in.
+- Created `post.ejs` partial.
+- Deleted `postsRouter.js` and `postsController.js` modules.
+- Logged in users can now create posts on the root path, `/`.
+- Created `hasRole` recursive function in `hasRole.js` module; accepts two array arguments and pops the `userRoles` array for comparison.
+- Currently, the `hasRole` recursive function is called in the `post.ejs` partial; if a user has specific roles, then the user will see the author and timestamp of posts. 
+---
 ### 21 JAN 2025
 - The `keyExists` query function now accommodates whether or not the given key exists and if the account has activated the key's corresponding role.
 - Created `insertPost`, `getAccountPosts`, and `getAllPosts` query functions in the `queries.js` module.
 - Created `postForm.ejs` and `posts.ejs` partials.
-- 
+- Created `populatePostsTable` asynchronous function in `initdb.js` module.
 ---
 ### 17 JAN 2025
 - Grouped `account_id` and `role_id` columns in `user_roles` table as a unique pair; an account can be in multiple roles, but cannot be in the same role multiple instances.

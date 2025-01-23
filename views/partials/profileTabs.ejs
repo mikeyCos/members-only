@@ -8,6 +8,7 @@
         <li><a href="/my-account/<%= currentUser.username %>/manage">Manage</a></li>
         <li><a href="/my-account/<%= currentUser.username %>/activate-key">Activate Key</a></li>
       <% } %>
+      <%# Show the "View Posts" link only if currentUser has a role of member %>
       <li><a href="/account/view-posts/<%= profile.username %>">View Posts</a></li>
     </ul>
   </nav>

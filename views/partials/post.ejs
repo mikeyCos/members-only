@@ -1,0 +1,13 @@
+<article>
+  <% if (currentUser && utils.hasRole(currentUser.roles, ['member'])) { %>
+    <ul>
+      <li>
+        <a href="/account/view-profile/<%= post.username %>"><%= post.username %></a>
+      </li>
+      <li>
+        <p><%= post.created_at %></p>
+      </li>
+    </ul>
+  <% } %>
+  <p><%= post.body %></p>
+</article>

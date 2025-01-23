@@ -106,9 +106,10 @@ const assignUserRole = async ({ accountID, key }) => {
 const insertPost = async ({ accountID, text }) => {
   await pool.query(
     `
-    INSERT INTO posts
-      VALUES (accountID, text)
-    `
+    INSERT INTO posts (account_id, body)
+      VALUES ($1, $2)
+    `,
+    [accountID, text]
   );
 };
 
@@ -127,7 +128,9 @@ const getAccountPosts = async ({ accountID }) => {
 const getAllPosts = async () => {
   const { rows: posts } = await pool.query(
     `
-    SELECT * FROM posts;
+    SELECT account_id, username, body, created_at FROM posts
+      LEFT JOIN accounts ON id = account_id
+      ORDER BY created_at DESC;
     `
   );
 

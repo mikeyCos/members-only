@@ -1,7 +1,6 @@
 const { Client } = require("pg");
 const { DATABASE_URL } = require("../config/environment");
 const bcrypt = require("bcryptjs");
-const { getAllMessages } = require("./queries");
 
 /*
  * Create a accounts table fullname, email, password, member
@@ -41,7 +40,7 @@ const roles = [
 const posts = [
   {
     accountID: 1,
-    text: "Ut est nisi, finibus at varius ac, aliquam nec erat. Fusce sit amet dignissim metus. Nulla facilisi. Nam rutrum ante sapien. Nulla maximus tortor sit amet dignissim efficitur. Vivamus pellentesque, eros id ullamcorper sagittis, enim mauris consectetur neque, a scelerisque erat ipsum in sapien",
+    body: "Ut est nisi, finibus at varius ac, aliquam nec erat. Fusce sit amet dignissim metus. Nulla facilisi. Nam rutrum ante sapien. Nulla maximus tortor sit amet dignissim efficitur. Vivamus pellentesque, eros id ullamcorper sagittis, enim mauris consectetur neque, a scelerisque erat ipsum in sapien",
   },
 ];
 
@@ -94,13 +93,13 @@ const populateRolesTable = async (rolesArr, client) => {
 
 const populatePostsTable = async (postsArr, client) => {
   for (const post of postsArr) {
-    const { accountID, text } = post;
+    const { accountID, body } = post;
     await client.query(
       `
-      INSERT INTO posts
+      INSERT INTO posts (account_id, body)
         VALUES ($1, $2)
       `,
-      [accountID, text]
+      [accountID, body]
     );
   }
 };
@@ -145,11 +144,14 @@ const CREATE_ACTIVATION_KEYS_QUERY = `
 // What is the appropriate size value for TEXT data type?
 // What is 500 characters to bytes?
 // Does this depend on the character encoder and programming language?
+// Creating default values for timestamp columns
+// https://neon.tech/postgresql/postgresql-tutorial/postgresql-timestamp#using-default-values-for-timestamp-columns
 const CREATE_POSTS_TABLE_QUERY = `
   CREATE TABLE posts (
     account_id INTEGER,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (account_id) REFERENCES accounts(id),
-    post TEXT
+    body TEXT
   );
 `;
 
