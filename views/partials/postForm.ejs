@@ -1,12 +1,12 @@
-<form action="/" method="POST">
+<form action="/" method="POST" class="create-post">
   <ul>
     <li class="form-item">
       <label for="post">Post</label>
-      <textarea name="post" id="post" placeholder="What is happening?!"></textarea>
+      <textarea name="post" id="post" placeholder="What is happening?!" oninput="textarea_onInput(this)"></textarea>
       <% if (locals.errors?.post) { %>
         <p class="input-error active-error"><%= errors.post.msg %></p>
       <% } %>
     </li>
   </ul>
-  <button type="submit">Post</button>
+  <button type="submit" disabled>Post</button>
 </form>

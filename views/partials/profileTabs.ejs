@@ -4,12 +4,14 @@
       <li><a href="/account/view-profile/<%= profile.username %>">Overview</a></li>
       <li><a href="/account/view-profile/<%= profile.username %>/placeholderA">PlaceholderA</a></li>
       <li><a href="/account/view-profile/<%= profile.username %>/placeholderB">PlaceholderB</a></li>
-      <% if(currentUser.id === profile.id) { %>
+      <% if(currentUser?.id === profile?.id) { %>
         <li><a href="/my-account/<%= currentUser.username %>/manage">Manage</a></li>
         <li><a href="/my-account/<%= currentUser.username %>/activate-key">Activate Key</a></li>
       <% } %>
-      <%# Show the "View Posts" link only if currentUser has a role of member %>
-      <li><a href="/account/view-posts/<%= profile.username %>">View Posts</a></li>
+      <%# Show the "View Posts" link only if currentUser has a admin or member role(s) %>
+      <% if (currentUser?.id === profile?.id || utils.hasRole(currentUser?.roles, ['admin', 'member'])) { %>
+        <li><a href="/account/view-posts/<%= profile.username %>">View Posts</a></li>
+      <% } %>
     </ul>
   </nav>
 </header>

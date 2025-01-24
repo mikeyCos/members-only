@@ -1,11 +1,16 @@
 # Changelog
 ---
 ### 23 JAN 2025
-- 
+- Permitted logged in users to view their own posts regardless of their roles.
+- Non-logged in users will not be able to visit the path `/account/view-posts/:username`.
+- Removed `indexRouter.use()` from the `indexRouter.js` module and created `setAllPosts` in the `indexController.js` module; `indexRouter.use()` will always run despite the path. The middleware performs the same task as it previous did in the `indexRouter.js` module.
+- Created `events` subdirectory and `textarea_onInput.js` module.
+- The submit button for creating a post will be disabled on default but enabled when the input's value length is greater than 0.
+- The `posts` table now has an `id` column.
+- Users with the role `admin` can will be able to see a delete button; clicking the button will delete the corresponding post.
 ---
 ### 22 JAN 2025
 - All posts can be rendered to the homepage.
-- Currently, post author and creation timestamp can be seen by anyone who is logged in.
 - Created `post.ejs` partial.
 - Deleted `postsRouter.js` and `postsController.js` modules.
 - Logged in users can now create posts on the root path, `/`.

@@ -1,3 +1,4 @@
+const { query } = require("express");
 const pool = require("./pool");
 
 const createAccount = async ({ fullname, email, username, password }) => {
@@ -128,13 +129,23 @@ const getAccountPosts = async ({ accountID }) => {
 const getAllPosts = async () => {
   const { rows: posts } = await pool.query(
     `
-    SELECT account_id, username, body, created_at FROM posts
-      LEFT JOIN accounts ON id = account_id
+    SELECT posts.id AS post_id, account_id, username, body, created_at FROM posts
+      LEFT JOIN accounts ON accounts.id = account_id
       ORDER BY created_at DESC;
     `
   );
 
   return posts;
+};
+
+const deletePost = async ({ accountID, postID }) => {
+  await pool.query(
+    `
+    DELETE FROM posts
+      WHERE account_id = $1 AND id = $2
+    `,
+    [accountID, postID]
+  );
 };
 
 module.exports = {
@@ -145,4 +156,5 @@ module.exports = {
   insertPost,
   getAccountPosts,
   getAllPosts,
+  deletePost,
 };

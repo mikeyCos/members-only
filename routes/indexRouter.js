@@ -1,17 +1,18 @@
 const { Router, application } = require("express");
-const { getIndex, postIndex } = require("../controllers/indexController");
-const { getAllPosts } = require("../db/queries");
+const {
+  setAllPosts,
+  getIndex,
+  postIndex,
+  postDeletePost,
+} = require("../controllers/indexController");
 
 const indexRouter = new Router();
 
-indexRouter.use(async (req, res, next) => {
-  const posts = await getAllPosts();
-  res.locals.posts = posts;
-  next();
-});
+// GET requests
+indexRouter.get("/", [setAllPosts, getIndex]);
 
-indexRouter.get("/", getIndex);
-
-indexRouter.post("/", postIndex);
+// POST requests
+indexRouter.post("/", [setAllPosts, postIndex]);
+indexRouter.post("/post/:postID/:accountID/delete", postDeletePost);
 
 module.exports = indexRouter;

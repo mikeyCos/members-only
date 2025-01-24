@@ -42,6 +42,14 @@ const posts = [
     accountID: 1,
     body: "Ut est nisi, finibus at varius ac, aliquam nec erat. Fusce sit amet dignissim metus. Nulla facilisi. Nam rutrum ante sapien. Nulla maximus tortor sit amet dignissim efficitur. Vivamus pellentesque, eros id ullamcorper sagittis, enim mauris consectetur neque, a scelerisque erat ipsum in sapien",
   },
+  {
+    accountID: 1,
+    body: "I like turtles",
+  },
+  {
+    accountID: 1,
+    body: "Ribbit ribbit",
+  },
 ];
 
 const populateAccountsTable = async (accountsArr, client) => {
@@ -148,8 +156,9 @@ const CREATE_ACTIVATION_KEYS_QUERY = `
 // https://neon.tech/postgresql/postgresql-tutorial/postgresql-timestamp#using-default-values-for-timestamp-columns
 const CREATE_POSTS_TABLE_QUERY = `
   CREATE TABLE posts (
-    account_id INTEGER,
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    account_id INTEGER,
     FOREIGN KEY (account_id) REFERENCES accounts(id),
     body TEXT
   );

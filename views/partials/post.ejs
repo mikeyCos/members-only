@@ -1,13 +1,21 @@
 <article>
-  <% if (currentUser && utils.hasRole(currentUser.roles, ['member'])) { %>
+  <% if (currentUser && utils.hasRole(currentUser.roles, ['admin', 'member'])) { %>
     <ul>
       <li>
-        <a href="/account/view-profile/<%= post.username %>"><%= post.username %></a>
+        <span>
+          Posted by
+          <a href="/account/view-profile/<%= post.username %>"><%= post.username %></a>
+        </span>
       </li>
       <li>
-        <p><%= post.created_at %></p>
+        <%= post.created_at %>
       </li>
     </ul>
   <% } %>
   <p><%= post.body %></p>
+  <% if (currentUser && utils.hasRole(currentUser.roles, ['admin'])) { %>
+      <form action="/post/<%= post.post_id %>/<%= post.account_id %>/delete" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+  <% } %>
 </article>
