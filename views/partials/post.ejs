@@ -1,5 +1,5 @@
 <article>
-  <% if (currentUser && utils.hasRole(currentUser.roles, ['admin', 'member'])) { %>
+  <% if ((currentUser?.id === post.account_id) || utils.hasRole(currentUser?.roles, ['admin', 'member'])) { %>
     <ul>
       <li>
         <span>

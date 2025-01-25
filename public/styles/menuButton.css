@@ -1,0 +1,40 @@
+.btn-menu {
+  border: none;
+  background: none;
+  z-index: 1;
+}
+
+.btn-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+}
+
+.btn-content > .menu-line {
+  background-color: rgb(0, 0, 0);
+  width: 50%;
+  height: 4px;
+}
+
+.btn-content > .menu-line:nth-child(3) {
+  background-color: red;
+  flex-basis: 100%;
+}
+
+.btn-menu[aria-pressed="true"] .menu-line:first-of-type {
+  transform: translateY(13px) rotate(45deg);
+}
+
+/* Small devices */
+@media screen and (min-width: 481px) {
+}
+
+/* Tablets */
+@media screen and (min-width: 768px) {
+}
+
+/* Desktops */
+@media screen and (min-width: 1024px) {
+}

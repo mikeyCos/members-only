@@ -1,5 +1,14 @@
 # Changelog
 ---
+### 25 JAN 2025
+- 
+---
+### 24 JAN 2025
+- Created `menuButton.ejs` partial.
+- Relaunched and redeployed on `Fly.io`.
+- Created `menuButton_onClick.js` module; toggles `.active` on the `.nav-right` unordered list.
+- Created `menuButton.css` style sheet.
+ ---
 ### 23 JAN 2025
 - Permitted logged in users to view their own posts regardless of their roles.
 - Non-logged in users will not be able to visit the path `/account/view-posts/:username`.
@@ -102,5 +111,5 @@
 - Created a variety of subdirectories including: `paths`, `public`, `routes`, `utils`, and `views`.
 - Template can be locally started with `npm run dev`.
 - Defined static and non-static paths in `paths/paths.js`.
-- Created and linked a `reset` stylesheet.
+- Created and linked a `reset` style sheet.
 ---

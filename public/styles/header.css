@@ -1,0 +1,28 @@
+.nav-main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-right {
+  /* background-color: white;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  visibility: hidden; */
+}
+
+.nav-right.active {
+  visibility: visible;
+}
+
+/* Small devices */
+@media screen and (min-width: 481px) {
+}
+
+/* Tablets */
+@media screen and (min-width: 768px) {
+}
+
+/* Desktops */
+@media screen and (min-width: 1024px) {
+}
