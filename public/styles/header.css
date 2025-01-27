@@ -1,18 +1,82 @@
+.header-main {
+  padding: 1rem;
+}
+
 .nav-main {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+.nav-main a {
+  text-wrap: nowrap;
+  font-family: var(--font-family-secondary);
+}
+
+.nav-left a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-left a h1 {
+  font-weight: 800;
+  position: absolute;
+  bottom: 25%;
+  background: white;
+  border-radius: 0.5rem;
+  padding: 0rem 0.5rem;
+}
+
+.nav-left .icon.logo {
+  width: 10rem;
+  height: auto;
+}
+
+.nav-right-wrapper {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 0%;
+  visibility: hidden;
+  transition: all 500ms ease-out;
+}
+
+.nav-right-wrapper.active {
+  visibility: visible;
+  width: 100%;
+  transition: all 500ms cubic-bezier(0.44, 1.54, 1, 0.92);
+}
+
+.nav-right a {
+  font-size: 1.5rem;
+}
+
+.nav-right.active {
+  /* visibility: visible;
+  width: 100%;
+  transition: all 500ms cubic-bezier(0.44, 1.54, 1, 0.92); */
 }
 
 .nav-right {
   /* background-color: white;
   position: fixed;
+  right: 0;
   height: 100%;
-  width: 100%;
-  visibility: hidden; */
+  width: 0%;
+  visibility: hidden;
+  transition: all 500ms ease-out; */
+  /* padding: 1rem; */
+  margin-top: 2rem;
 }
 
-.nav-right.active {
-  visibility: visible;
+.nav-right li {
+  padding: 0.5rem;
+}
+
+.nav-right li:has(a:hover) {
+  background-color: red;
 }
 
 /* Small devices */

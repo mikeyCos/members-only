@@ -4,11 +4,27 @@
  * Define general styling here
  */
 
+@font-face {
+  font-family: Noto Sans;
+  src: url("../assets/fonts/Noto_Sans/NotoSans-VariableFont_wdth\,wght.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: Oswald;
+  src: url("../assets/fonts/Oswald/Oswald-VariableFont_wght.ttf")
+    format("truetype");
+}
+
 :root {
   --font-color-primary: #2e282a;
   --bkg-color-primary: #17bebb;
   --bkg-color-secondary: #edb88b;
   --bkg-color-tertiary: #ef3e36;
+  --menu-btn-width: 32px;
+  --menu-btn-height: 32px;
+  --font-family-primary: Noto Sans, sans-serif;
+  --font-family-secondary: Oswald, Arial;
 }
 
 body {
@@ -16,4 +32,5 @@ body {
   display: grid;
   grid-auto-rows: min-content 1fr min-content;
   background-color: var(--bkg-color-primary);
+  font-family: var(--font-family-primary);
 }

@@ -1,39 +1,45 @@
-<header>
+<header class="header-main">
   <nav class="nav-main">
     <ul class="nav-left">
       <li>
-        <a href="#">Nav left placeholder</a>
+        <a href="/">
+          <%- include('../../public/assets/icons/undraw_team_spirit.svg') %>
+          <h1>Members Only</h1>
+        </a>
       </li>
     </ul>
 
-    <ul class="nav-right">
-      <li>
-        <a href="/">Home</a>
-      </li>
-
-      <li>
-        <a href="/placeholderA">Placeholder A</a>
-      </li>
-
-      <% if (locals.currentUser) { %>
-        <li>Logged in as <a href="/account/view-profile/<%= currentUser.username %>"><%= currentUser.username %></a></li>
-        <li>
-          <form action="/account/logout" method="POST">
-            <button type="submit">Log out</button>
-          </form>
+    <div class="nav-right-wrapper">
+      <ul class="nav-right">
+        <li class="nav-item">
+          <a href="/">Home</a>
         </li>
-      <% } else { %>
-        <li>
-          <a href="/account/login">Log in</a>
+  
+        <li class="nav-item">
+          <a href="/placeholderA">Placeholder A</a>
         </li>
-        <li>
-          <a href="/account/signup">Sign up</a>
+  
+        <% if (locals.currentUser) { %>
+          <li class="nav-item">Logged in as <a href="/account/view-profile/<%= currentUser.username %>"><%= currentUser.username %></a></li>
+          <li class="nav-item"
+            <form action="/account/logout" method="POST">
+              <button type="submit">Log out</button>
+            </form>
+          </li>
+        <% } else { %>
+          <li class="nav-item">
+            <a href="/account/login">Log in</a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="/account/signup">Sign up</a>
+          </li>
+        <% } %>
+        <li class="nav-item">
+          <a href="/support">Contact support</a>
         </li>
-      <% } %>
-      <li>
-        <a href="/support">Contact support</a>
-      </li>
-    </ul>
+      </ul>
+    </div>
 
     <%- include('./menuButton') %>
   </nav>

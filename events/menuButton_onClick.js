@@ -1,9 +1,9 @@
 const menuButton_onClick = (e) => {
   const menuButton = e;
-  const navRight = document.querySelector(".nav-right");
-  console.log(navRight);
+  const navRightWrapper = document.querySelector(".nav-right-wrapper");
+  console.log(navRightWrapper);
   console.log(menuButton);
   console.log(menuButton.ariaPressed);
   menuButton.ariaPressed = menuButton.ariaPressed !== "true";
-  navRight.classList.toggle("active");
+  navRightWrapper.classList.toggle("active");
 };

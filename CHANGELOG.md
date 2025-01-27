@@ -1,7 +1,14 @@
 # Changelog
 ---
-### 25 JAN 2025
-- 
+### 26 JAN 2025
+- Rebuilt the `menuButton.ejs` partial with a `svg` element instead of multiple `span` elements.
+- Stylized the `.nav-main` container and it's child elements.
+- Created `fonts` subdirectory.
+- Saved `Noto_Sans` and `Oswald` variable fonts; defined them as custom fonts in `root.css` style sheet.
+- Saved four `undraw_*.svg` icons.
+- Wrapped `.nav-right` unordered list with a generic container with classname `nav-right-wrapper`.
+- The `menuButton_onClick.js` module not toggles `active` class on `.nav-right-wrapper`.
+- Commit before creating `styles` branch.
 ---
 ### 24 JAN 2025
 - Created `menuButton.ejs` partial.
