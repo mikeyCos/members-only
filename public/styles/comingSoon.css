@@ -1,0 +1,26 @@
+.coming-soon {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  position: relative;
+}
+
+.coming-soon > svg {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+.coming-soon > span {
+  font-family: var(--font-family-secondary);
+  font-size: 1.5rem;
+  position: absolute;
+  bottom: 65%;
+}
+
+/* Elements coming soon */
+#placeholderA {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}

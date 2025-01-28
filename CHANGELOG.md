@@ -1,5 +1,14 @@
 # Changelog
 ---
+### 27 JAN 2025
+- Changed `postForm.ejs` `action` value from `/` to `/post/create`.
+- Defined `maxlength` attribute with the value `560` for `textarea` input.
+- Created `comingSoon.ejs` partial.
+- Created `comingSoon.css` and `posts.css` style sheets.
+- Placeholder routes now include `comingSoon.ejs` partial.
+- The button in the `header` element is hidden when the screen width is greater than or equal to 768px.
+- The `.nav-right-wrapper` generic container becomes visible when the screen width is greater than or equal to 768px.
+---
 ### 26 JAN 2025
 - Rebuilt the `menuButton.ejs` partial with a `svg` element instead of multiple `span` elements.
 - Stylized the `.nav-main` container and it's child elements.

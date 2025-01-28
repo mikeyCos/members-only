@@ -6,7 +6,10 @@ const postSchema = {
     isEmpty: {
       negated: true,
     },
-    errorMessage: "Test",
+    isLength: {
+      options: { min: 1, max: 560 },
+    },
+    errorMessage: "Post must be between 1 and 560 characters long.",
     escape: true,
   },
 };

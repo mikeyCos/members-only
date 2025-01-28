@@ -5,14 +5,11 @@
     <%- include('./header') %>
     <main>
       <section id="home">
-        <h2>Index</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est error dolor rerum quaerat aliquam voluptate eligendi delectus ab illum consequuntur? Odit eum quas error et enim voluptatem quam voluptates iste.</p>
-        
         <% if (locals.currentUser) { %>
           <%- include('./postForm') %>
         <% } %>
 
-        <%- include('./posts') %>
+        <%- include('./posts', { heading: 'Posts'}) %>
       </section>
     </main>
     <%- include('./footer') %>

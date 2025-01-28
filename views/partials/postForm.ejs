@@ -1,8 +1,8 @@
-<form action="/" method="POST" class="create-post">
+<form action="/post/create" method="POST" class="form-create-post">
   <ul>
     <li class="form-item">
       <label for="post">Post</label>
-      <textarea name="post" id="post" placeholder="What is happening?!" oninput="textarea_onInput(this)"></textarea>
+      <textarea name="post" id="post" placeholder="What is happening?!" spellcheck="true" oninput="textarea_onInput(this)" maxlength="560"></textarea>
       <% if (locals.errors?.post) { %>
         <p class="input-error active-error"><%= errors.post.msg %></p>
       <% } %>

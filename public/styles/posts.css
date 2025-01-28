@@ -1,0 +1,36 @@
+#posts {
+  border: 2px solid red;
+}
+
+#posts > *:not(:first-child, :last-child) {
+  /* margin-bottom: 1rem; */
+}
+
+#posts > article {
+  border: 2px solid lightpink;
+  padding: 2rem 1rem;
+  border-bottom: 2px solid black;
+}
+
+#posts > article > ul {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+#posts > article a {
+  color: blue;
+}
+
+/* Small devices */
+@media screen and (min-width: 481px) {
+}
+
+/* Tablets */
+@media screen and (min-width: 768px) {
+}
+
+/* Desktops */
+@media screen and (min-width: 1024px) {
+}

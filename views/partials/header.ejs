@@ -20,8 +20,11 @@
         </li>
   
         <% if (locals.currentUser) { %>
-          <li class="nav-item">Logged in as <a href="/account/view-profile/<%= currentUser.username %>"><%= currentUser.username %></a></li>
-          <li class="nav-item"
+          <li class="nav-item">
+            <span>Logged in as</span>
+            <a href="/account/view-profile/<%= currentUser.username %>"><%= currentUser.username %></a>
+          </li>
+          <li class="nav-item">
             <form action="/account/logout" method="POST">
               <button type="submit">Log out</button>
             </form>

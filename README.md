@@ -157,8 +157,10 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 - [x] Create skeleton components.
 - [ ] Initialized a PostgreSQL database.
-  - [ ] Create a accounts table first name, last name, email, password, member
-  - [ ] Create a messages table author, message, timestamp
+  - [ ] Create a accounts table first name, last name, email, password, member.
+  - [ ] Create a messages table author, message, timestamp.
+  - [ ] Create a table containing serial keys made up of 16 alphanumeric characters.
+- [ ] Implement the ability for users to post.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

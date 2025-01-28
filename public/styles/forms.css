@@ -1,3 +1,30 @@
+.form-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-item > label {
+  flex-basis: 100%;
+}
+
+.form-item > label::after {
+  content: "*";
+  color: red;
+}
+
+.form-item > input,
+.form-item > textarea {
+  width: 100%;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.form-item > input:focus {
+  outline: 2px solid rgb(0, 0, 0);
+}
+
 .form-item > .input-error {
   color: red;
   border: 0;
@@ -21,7 +48,47 @@
   width: unset;
 }
 
-.form-item > label::after {
-  content: "*";
-  color: red;
+/* Form buttons */
+form > button {
+  padding: 0.25rem 0.5rem;
+}
+
+/* Submit buttons */
+.form-signup > button[type="submit"],
+.form-login > button[type="submit"],
+.form-create-post > button[type="submit"],
+.form-activate-key > button[type="submit"] {
+  display: block;
+  margin-left: auto;
+}
+
+/* Signup form */
+
+/* Login form */
+
+/* Post */
+.form-create-post {
+  border: 2px solid purple;
+}
+
+.form-create-post label {
+  visibility: hidden;
+  font-size: 0;
+}
+
+textarea {
+  resize: vertical;
+  max-height: 720px;
+}
+
+/* Small devices */
+@media screen and (min-width: 481px) {
+}
+
+/* Tablets */
+@media screen and (min-width: 768px) {
+}
+
+/* Desktops */
+@media screen and (min-width: 1024px) {
 }

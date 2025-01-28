@@ -34,3 +34,28 @@ body {
   background-color: var(--bkg-color-primary);
   font-family: var(--font-family-primary);
 }
+
+main {
+  display: grid;
+  grid-auto-rows: auto;
+}
+
+main > section {
+  padding: 1rem;
+  border: 2px solid rgb(255, 153, 0);
+  max-width: 1000px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-secondary);
+}
+
+button {
+  border: none;
+  border-radius: 0.5rem;
+}

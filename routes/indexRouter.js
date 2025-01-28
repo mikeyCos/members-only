@@ -12,7 +12,7 @@ const indexRouter = new Router();
 indexRouter.get("/", [setAllPosts, getIndex]);
 
 // POST requests
-indexRouter.post("/", [setAllPosts, postIndex]);
+indexRouter.post("/post/create", [setAllPosts, postIndex]);
 indexRouter.post("/post/:postID/:accountID/delete", postDeletePost);
 
 module.exports = indexRouter;
