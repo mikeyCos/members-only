@@ -7,7 +7,7 @@ const profileController = {
     console.log("setProfile running...");
     const { username } = req.params;
     const profile = await getAccount({ username });
-    if (!profile) next({ msg: "Profile not found" });
+    if (!profile) next({ status: 404, msg: "Profile not found" });
 
     res.locals.profile = profile;
     next();

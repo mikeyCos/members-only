@@ -17,10 +17,12 @@
 }
 
 :root {
-  --font-color-primary: #2e282a;
-  --bkg-color-primary: #17bebb;
-  --bkg-color-secondary: #edb88b;
-  --bkg-color-tertiary: #ef3e36;
+  --font-color-primary: #161314;
+  --anchor-color: #0043a7;
+  --bkg-color-primary: #f2f2f2;
+  --bkg-color-secondary: #64bf84;
+  --bkg-color-tertiary: #038c3e;
+  --bkg-color-quaternary: #dfbb85;
   --menu-btn-width: 32px;
   --menu-btn-height: 32px;
   --font-family-primary: Noto Sans, sans-serif;
@@ -36,14 +38,15 @@ body {
 }
 
 main {
-  display: grid;
-  grid-auto-rows: auto;
+  padding: 1rem;
 }
 
 main > section {
-  padding: 1rem;
-  border: 2px solid rgb(255, 153, 0);
+  outline: 2px dashed rgb(255, 153, 0);
+  height: 100%;
   max-width: 1000px;
+  padding: 1rem;
+  margin: auto;
 }
 
 h1,
@@ -56,6 +59,7 @@ h6 {
 }
 
 button {
+  color: var(--font-color-primary);
   border: none;
   border-radius: 0.5rem;
 }

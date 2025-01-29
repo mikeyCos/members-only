@@ -1,3 +1,8 @@
+section > form {
+  max-width: 400px;
+  margin: auto;
+}
+
 .form-item {
   display: flex;
   flex-direction: column;
@@ -60,6 +65,14 @@ form > button {
 .form-activate-key > button[type="submit"] {
   display: block;
   margin-left: auto;
+  background-color: var(--bkg-color-quaternary);
+}
+
+.form-signup > button[type="submit"]:hover,
+.form-login > button[type="submit"]:hover,
+.form-create-post > button[type="submit"]:hover,
+.form-activate-key > button[type="submit"]:hover {
+  background-color: var(--bkg-color-secondary);
 }
 
 /* Signup form */

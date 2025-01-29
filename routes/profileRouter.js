@@ -6,6 +6,7 @@ const {
   setProfileTab,
 } = require("../controllers/profileController");
 const hasRole = require("../utils/hasRole");
+const validateProfileTab = require("../validators/profileTabValidator");
 
 const profileRouter = new Router();
 
@@ -20,11 +21,15 @@ const checkRole = (req, res, next) => {
     return next();
   }
 
-  next({ msg: "You do not have permissions to view resource." });
+  next({ status: 403, msg: "You do not have permissions to view resource." });
 };
 
 // Router-level
-profileRouter.use("/view-profile/:username/:tab?", [setProfile, setProfileTab]);
+profileRouter.use("/view-profile/:username/:tab?", [
+  validateProfileTab,
+  setProfile,
+  setProfileTab,
+]);
 profileRouter.use("/view-posts/:username", [setProfile, checkRole]);
 
 // GET requests

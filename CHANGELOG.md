@@ -1,5 +1,13 @@
 # Changelog
 ---
+### 28 JAN 2025
+- Added `margin: auto` and `max-width: 1000px` to the main `nav` element, the `section` element directly in `main` element, and the `ul` element directly in `footer` element; this will happen when the screen width is greater than or equal to 1024px.
+- Created `icons.css` and `errorPages.css` style sheets.
+- Changed tree fill values for `undraw_under_construction.svg` to `currentColor`.
+- Restructured `footer` element to have only one `ul` element.
+- Created `profileTabValidator.js` module; run in the `profileRouter.js` module and checks if the `tab` parameter exists as a file in `${viewsPartialsPath}/profileTabs/${tab}.ejs` tab path.
+- The main navigation items have a different hover effect when the screen width is greater than or equal to 768px.
+---
 ### 27 JAN 2025
 - Changed `postForm.ejs` `action` value from `/` to `/post/create`.
 - Defined `maxlength` attribute with the value `560` for `textarea` input.

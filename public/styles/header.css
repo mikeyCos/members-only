@@ -1,6 +1,6 @@
 .header-main {
   padding: 1rem;
-  border: 2px solid rgb(0, 255, 64);
+  background-color: var(--bkg-color-secondary);
 }
 
 .nav-main {
@@ -23,18 +23,13 @@
 }
 
 .nav-left a h1 {
-  font-weight: 800;
   position: absolute;
   bottom: 25%;
   background: white;
   border-radius: 0.5rem;
   padding: 0rem 0.5rem;
   transition: rotate 150ms ease-in;
-}
-
-.nav-left .icon.logo {
-  width: 10rem;
-  height: auto;
+  font-size: 1.75rem;
 }
 
 .nav-right-wrapper {
@@ -60,17 +55,36 @@
 }
 
 .nav-right li {
+  position: relative;
   padding: 0.5rem;
 }
 
-.nav-right li:has(a:hover, button:hover) {
-  background-color: red;
+.nav-right li::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: var(--bkg-color-secondary);
+  transform: translateX(150%) skew(45deg);
+  z-index: -1;
+  transition: transform 150ms ease-in;
+  visibility: hidden;
+}
+
+.nav-right li:has(a:hover, button:hover)::before {
+  visibility: visible;
+  transform: translateX(0%);
+  transition: transform 250ms ease-in;
 }
 
 .nav-right a,
 .nav-right button {
   font-size: 1.5rem;
   font-family: var(--font-family-secondary);
+  color: var(--font-color-primary);
 }
 
 .nav-right button {
@@ -103,6 +117,19 @@
   .nav-right {
     display: flex;
     margin-top: 0;
+  }
+
+  .nav-right li::before {
+    background-color: var(--bkg-color-primary);
+    transform-origin: 0 100%;
+    transform: scaleY(0);
+    transition: transform 150ms ease-in;
+  }
+
+  .nav-right li:has(a:hover, button:hover)::before {
+    transform: scaleY(1) skew(5deg);
+    height: 100%;
+    transition: transform 250ms ease-in;
   }
 }
 

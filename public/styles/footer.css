@@ -1,11 +1,36 @@
 footer {
-  background-color: var(--font-color-primary);
-  padding: 0.5rem 0;
+  display: flex;
+  background-color: var(--bkg-color-secondary);
+  color: var(--font-color-primary);
+  padding: 0.25rem 1rem;
   box-shadow: 0 0 4px black;
-  color: var(--bkg-color-secondary);
 }
 
-footer > div {
+footer > ul {
+  font-family: var(--font-family-secondary);
+  position: relative;
   display: flex;
   justify-content: center;
+  width: 100%;
+}
+
+footer li:last-of-type {
+  position: absolute;
+  right: 0;
+}
+
+/* Small devices */
+@media screen and (min-width: 481px) {
+}
+
+/* Tablets */
+@media screen and (min-width: 768px) {
+}
+
+/* Desktops */
+@media screen and (min-width: 1024px) {
+  footer > ul {
+    max-width: 1000px;
+    margin: auto;
+  }
 }

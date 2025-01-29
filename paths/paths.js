@@ -16,4 +16,5 @@ const viewsPaths = [viewsPagesPath, viewsPartialsPath];
 module.exports = {
   staticPaths,
   viewsPaths,
+  viewsPartialsPath,
 };

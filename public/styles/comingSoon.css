@@ -5,12 +5,6 @@
   position: relative;
 }
 
-.coming-soon > svg {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-}
-
 .coming-soon > span {
   font-family: var(--font-family-secondary);
   font-size: 1.5rem;

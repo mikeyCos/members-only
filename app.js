@@ -78,15 +78,18 @@ app.use("/account", [accountRouter, profileRouter]);
 app.use("/my-account", myAccountRouter);
 app.use("/support", supportRouter);
 
-app.use((req, res) => {
-  res.render("404", { title: "404 - Page Not Found" });
+app.use((req, res, next) => {
+  // res.render("404", { title: "404 - Page Not Found" });
+  next({ status: 404, msg: "Resource not found" });
 });
 
 // Error middleware function
 app.use((err, req, res, next) => {
   console.log("error middleware running...");
   console.log("err:", err);
-  res.status(404).render("404", { error: err.msg ?? "Resource not found" });
+  const { status, msg } = err;
+  res.status(status).render(`${status}`, { error: msg });
+  // res.status(404).render("404", { error: err.msg ?? "Resource not found" });
 });
 
 app.listen(PORT, () => console.log(`Application running on port: ${PORT}`));
