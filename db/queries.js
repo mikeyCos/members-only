@@ -2,7 +2,6 @@ const { query } = require("express");
 const pool = require("./pool");
 
 const createAccount = async ({ fullname, email, username, password }) => {
-  console.group("createAccount query running...");
   await pool.query(
     `
     INSERT INTO accounts (fullname, email, username, password)
@@ -12,19 +11,7 @@ const createAccount = async ({ fullname, email, username, password }) => {
   );
 };
 
-/*
-  SELECT accounts.username, ARRAY_AGG(role_name) AS roles FROM accounts
-  LEFT JOIN roles ON roles.id = ANY(SELECT role_id FROM user_roles WHERE account_id = 1) AND accounts.id = 1
-  WHERE accounts.id = 1
-  GROUP BY accounts.username;
-
-  SELECT *, (SELECT ARRAY_AGG(role_name) FROM roles WHERE  roles.id = ANY(SELECT role_id FROM user_roles WHERE account_id = 1)) AS roles FROM accounts WHERE id = 1;
- */
-
 const getAccount = async ({ id, username }) => {
-  console.log("getAccount query running...");
-  console.log("username:", username);
-  console.log("id:", id);
   // https://stackoverflow.com/questions/55375533/postgresql-how-to-join-tables-on-array-column
   // https://stackoverflow.com/questions/12808189/setting-column-values-as-column-names-in-the-sql-query-result
   const {
@@ -39,12 +26,11 @@ const getAccount = async ({ id, username }) => {
     `,
     [id, username]
   );
-  console.log("getAccount return value:", account);
+
   return account;
 };
 
 const keyExists = async ({ accountID, key }) => {
-  console.log("keyExists running...");
   // If key exists in activation_keys table
   //  If account has role return 0
   //  Else return 1

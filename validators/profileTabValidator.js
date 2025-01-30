@@ -5,7 +5,6 @@ const { existsSync } = require("fs");
 const { viewsPartialsPath } = require("../paths/paths");
 
 const profileTabValidator = async (tab) => {
-  console.log("profileTabValidator running...");
   const tabPath = `${viewsPartialsPath}/profileTabs/${tab}.ejs`;
 
   // I need to review promises
@@ -14,8 +13,6 @@ const profileTabValidator = async (tab) => {
     .then(() => true)
     .catch(() => false);
 
-  console.log("tabPath:", tabPath);
-  console.log("tabExists:", tabExists);
   if (!tabExists) throw new Error();
   return Promise.resolve();
 };
@@ -33,7 +30,6 @@ const profileTabSchema = {
 };
 
 const validateProfileTab = asyncHandler(async (req, res, next) => {
-  console.log("validateProfileTab running...");
   await checkSchema(profileTabSchema, ["params"]).run(req);
   const errors = validationResult(req);
 

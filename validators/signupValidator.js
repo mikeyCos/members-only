@@ -21,9 +21,6 @@ const usernameValidator = async (username) => {
   const regex = new RegExp("^[a-zA-Z\\-\\_]{3,10}$");
   const account = await getAccount({ username });
   const regexResult = regex.test(username);
-  // console.log("regex.test(username):", regex.test(username));
-  // console.log("!account:", !account);
-  // console.log("regexResult && !account:", regexResult && !account);
   // If regexResult and account are falsy values
   // Throw error or reject Promise
   if (!regexResult) throw new Error();
@@ -34,11 +31,13 @@ const usernameValidator = async (username) => {
 const accountSchema = {
   fullname: {
     trim: true,
-    isLength: {
-      options: {
-        max: 12,
-      },
+    isEmpty: {
+      negated: true,
+      bail: true,
+      errorMessage: "Fullname cannot be empty.",
     },
+    isAlpha: true,
+    errorMessage: "Fullname must only consist letters.",
     escape: true,
   },
   username: {
@@ -87,24 +86,5 @@ const accountSchema = {
 };
 
 const validateSignup = checkSchema(accountSchema, ["body"]);
-
-// Does rendering a response in a validation middleware make sense?
-/* const validateAccount = [
-  checkSchema(schema, ["body"]),
-  (req, res, next) => {
-    console.log("validateAccount running...");
-    const errors = validationResult(req);
-    console.log("errors:", errors);
-    console.log("errors.mapped():", errors.mapped());
-    if (!errors.isEmpty()) {
-      return res.render("createAccount", {
-        title: "Create Account",
-        errors: errors.mapped(),
-      });
-    }
-
-    next();
-  },
-]; */
 
 module.exports = validateSignup;

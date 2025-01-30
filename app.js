@@ -5,7 +5,6 @@ const pgSession = require("connect-pg-simple")(session);
 const { PORT } = require("./config/environment");
 const pool = require("./db/pool");
 const { staticPaths, viewsPaths } = require("./paths/paths");
-const logger = require("./utils/logger");
 const indexRouter = require("./routes/indexRouter");
 const placeholderRouter = require("./routes/placeholderRouter");
 const accountRouter = require("./routes/accountRouter");
@@ -49,21 +48,8 @@ app.use(passport.session());
 // Parses form data
 app.use(express.urlencoded({ extended: true }));
 
-// Application-level
-// app.use(logger);
-
-// An idea for verifying roles
-const verifyRoles = (roles) => {
-  return (req, res, next) => {
-    if (!roles) next();
-  };
-};
-
+// Application-leve
 app.use((req, res, next) => {
-  console.log("application-level middleware running...");
-  console.log("req.session:", req.session);
-  console.log("req.user:", req.user);
-  console.log("req.originalUrl:", req.originalUrl);
   res.locals.utils = {
     hasRole,
   };
@@ -85,8 +71,6 @@ app.use((req, res, next) => {
 
 // Error middleware function
 app.use((err, req, res, next) => {
-  console.log("error middleware running...");
-  console.log("err:", err);
   const { status, msg } = err;
   res.status(status).render("errors", { status, error: msg });
 });

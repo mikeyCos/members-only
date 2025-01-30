@@ -3,14 +3,14 @@
   <ul>
     <li class="form-item">
       <label for="username">Username</label>
-      <input name="username" id="username" type="text" value="<%= locals.inputs?.username %>">
+      <input name="username" id="username" type="text" value="<%= locals.inputs?.username %>" autocomplete="username">
       <% if (locals.errors?.username) { %>
         <p class="input-error active-error"><%= errors.username.msg %></p>
       <% } %>
     </li>
     <li class="form-item">
       <label for="password">Password</label>
-      <input name="password" id="password" type="password" value="<%= locals.inputs?.password %>">
+      <input name="password" id="password" type="password" value="<%= locals.inputs?.password %>" autocomplete="current-password">
       <% if (locals.errors?.password) { %>
         <p class="input-error active-error"><%= errors?.password.msg %></p>
       <% } %>

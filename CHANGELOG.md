@@ -1,5 +1,10 @@
 # Changelog
 ---
+### 30 JAN 2025
+- Merged `styles-members-only` branch to `main` branch.
+- Attached `autocomplete="username"`, `autocomplete="new-password"`, and `autocomplete="current-password"` attributes on username and password inputs.
+- Removed `console.log()` throughout modules.
+---
 ### 29 JAN 2025
 - Changed `.icon.logo` length unit from `rem` to `em` for the `width` property when the screen width is greater than or equal to 768px.
 - Changed `.nav-left a h1` length unit from `rem` to `em` for the `font-size` property when the screen width is greater than or equal to 768px.

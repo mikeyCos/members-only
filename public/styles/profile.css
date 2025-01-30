@@ -22,6 +22,7 @@
 
 .profile-tabs > li > a {
   position: relative;
+  font-family: var(--font-family-secondary);
 }
 
 .profile-tabs > li > a::before {
@@ -66,6 +67,7 @@
 
 .nav-account a {
   position: relative;
+  font-family: var(--font-family-secondary);
 }
 
 .nav-account a::before {

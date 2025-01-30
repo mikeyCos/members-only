@@ -11,10 +11,6 @@ const validateProfileTab = require("../validators/profileTabValidator");
 const profileRouter = new Router();
 
 const checkRole = (req, res, next) => {
-  console.log("checkRole running...");
-  console.log("req.user:", req.user);
-  console.log("res.locals.profile:", res.locals.profile);
-
   const userID = req.user?.id;
   const profileID = res.locals.profile.id;
   if (userID === profileID || hasRole(req.user?.roles, ["admin", "member"])) {

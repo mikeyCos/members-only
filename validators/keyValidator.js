@@ -2,22 +2,16 @@ const { checkSchema } = require("express-validator");
 const { keyExists } = require("../db/queries");
 
 const keyFormatValidator = (key) => {
-  console.log("keyFormatValidator running...");
   const regex = new RegExp("([A-Z0-9]{4}(?:[- ]?[A-Z0-9]{4}){3})");
   return regex.test(key);
 };
 
 const keyValidator = async (key, { req }) => {
-  console.log("keyValidator running...");
-  console.log("key:", key);
   const { id: accountID } = req.user;
-  console.log("accountID:", accountID);
   const result = await keyExists({ accountID, key });
-  console.log("result:", result);
-  if (!result) {
-    console.log("!result:", !result);
-    throw new Error();
-  }
+
+  if (!result) throw new Error();
+
   return Promise.resolve();
 };
 

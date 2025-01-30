@@ -5,16 +5,13 @@ const { assignUserRole } = require("../db/queries");
 
 const myAccountController = {
   getMyAccount: asyncHandler(async (req, res) => {
-    console.log("getMyAccount running...");
     res.locals.profile = req.user;
     res.render("profile");
   }),
   getManage: asyncHandler(async (req, res) => {
-    console.log("getManage running...");
     res.render("manageAccount");
   }),
   getActivateKey: asyncHandler(async (req, res) => {
-    console.log("getActivate running...");
     res.render("activateKey");
   }),
   postActivateKey: [
@@ -22,10 +19,7 @@ const myAccountController = {
     asyncHandler(async (req, res, next) => {
       const errors = validationResult(req);
       const inputs = matchedData(req, { onlyValidData: false });
-      console.log("inputs:", inputs);
       if (!errors.isEmpty()) {
-        console.log(errors.mapped());
-        console.log("inputs:", inputs);
         return res.render("activateKey", {
           errors: errors.mapped(),
           inputs,
