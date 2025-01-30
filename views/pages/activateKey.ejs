@@ -1,18 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('./head', { title: 'Activate Account' }) %>
+<%- include('./head', { title: 'Activate Key' }) %>
 <body>
   <%- include('./header') %>
   <main>
-    <section id="activate-account">
-      <%# Navigation bar for manage account %>
-      <header>
-        <nav>
-          <ul>
-            <li><a href="/my-account">My Account</a></li>
-          </ul>
-        </nav>
-      </header>
+    <section id="activate-key">
+      <%- include('./accountHeader') %>
       <%- include('./activateKeyForm') %>
     </section>
   </main>

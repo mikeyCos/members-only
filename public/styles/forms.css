@@ -3,6 +3,10 @@ section > form {
   margin: auto;
 }
 
+.form-success {
+  color: #004e22;
+}
+
 .form-item {
   display: flex;
   flex-direction: column;
@@ -79,9 +83,22 @@ form > button {
 
 /* Login form */
 
-/* Post */
+/* Create post form */
 .form-create-post {
-  border: 2px solid purple;
+  position: relative;
+  max-width: 500px;
+  margin-bottom: 2rem;
+}
+
+.form-create-post::after {
+  position: absolute;
+  left: 0;
+  bottom: -1rem;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: var(--bkg-color-quaternary);
 }
 
 .form-create-post label {
@@ -89,9 +106,29 @@ form > button {
   font-size: 0;
 }
 
+.form-create-post > button[type="submit"]:disabled {
+  pointer-events: none;
+  background-color: rgb(207 207 207);
+}
+
 textarea {
   resize: vertical;
   max-height: 720px;
+}
+
+/* Delete post form */
+.form-delete-post {
+  display: flex;
+  margin-top: 0.5rem;
+}
+
+.form-delete-post > button[type="submit"] {
+  margin-left: auto;
+  background-color: rgba(255, 79, 79, 0.3);
+}
+
+.form-delete-post > button[type="submit"]:hover {
+  background-color: rgba(255, 79, 79, 0.6);
 }
 
 /* Small devices */

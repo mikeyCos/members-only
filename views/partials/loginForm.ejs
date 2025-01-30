@@ -16,7 +16,9 @@
       <% } %>
     </li>
     <% if(locals.message) { %>
-      <p><%= locals.message %></p>
+      <li class="form-item">
+        <p class="input-error active-error"><%= locals.message %></p>
+      </li>
     <% } %>
   </ul>
   <button type="submit">Login</button>

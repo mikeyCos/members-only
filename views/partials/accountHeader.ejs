@@ -1,0 +1,11 @@
+<header class="header-account">
+  <nav class="nav-account">
+    <ul>
+      <% if (locals?.profile) { %>
+        <li><a href="/account/view-profile/<%= profile.username %>">View Profile</a></li>
+      <% } else { %>
+        <li><a href="/my-account">My Account</a></li>
+      <% } %>
+    </ul>
+  </nav>
+</header>

@@ -1,5 +1,5 @@
 <form action="/my-account/<%= currentUser.username %>/activate-key" method="POST" class="form-activate-key">
-  <h2>Activate Account</h2>
+  <h2>Activate Key</h2>
   <ul>
     <li class="form-item">
       <label for="key">Activate Key</label>
@@ -9,7 +9,7 @@
       <% } %>
 
       <% if (locals.success) { %>
-        <p><%= success.msg %></p>
+        <p class="form-success"><%= success.msg %></p>
       <% } %>
     </li>
   </ul>

@@ -65,6 +65,11 @@
   .btn-menu {
     visibility: hidden;
     pointer-events: none;
+    transition: none;
+  }
+
+  .btn-menu > .menu > .menu-line {
+    transition: none;
   }
 }
 

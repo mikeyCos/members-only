@@ -16,3 +16,9 @@
   color: var(--font-color-primary);
   max-width: 24px;
 }
+
+@media screen and (min-width: 768px) {
+  .icon.logo {
+    width: 7em;
+  }
+}

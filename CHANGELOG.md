@@ -1,5 +1,15 @@
 # Changelog
 ---
+### 29 JAN 2025
+- Changed `.icon.logo` length unit from `rem` to `em` for the `width` property when the screen width is greater than or equal to 768px.
+- Changed `.nav-left a h1` length unit from `rem` to `em` for the `font-size` property when the screen width is greater than or equal to 768px.
+- Changed the main navigation items' default `font-size` from `1.5rem` to `1.25rem`.
+- Main navigation items have `font-size: clamp(1rem, 2vw, 1.5rem);` when the screen width is greater than or equal to 768px.
+- Renamed `profileTabs.ejs` partial to `profileHeader.ejs`. 
+- Deleted `401.ejs`, and `404.ejs` pages.
+- Created `profile.css` style sheet.
+- Created `errors.ejs` page, and `accountHeader.ejs` partial.
+---
 ### 28 JAN 2025
 - Added `margin: auto` and `max-width: 1000px` to the main `nav` element, the `section` element directly in `main` element, and the `ul` element directly in `footer` element; this will happen when the screen width is greater than or equal to 1024px.
 - Created `icons.css` and `errorPages.css` style sheets.

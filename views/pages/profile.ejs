@@ -7,7 +7,7 @@
     <section id="profile">
       <%# Navigation bar for account info %>
       <h2>Profile</h2>
-      <%- include('./profileTabs') %>
+      <%- include('./profileHeader') %>
       <%- include(`./profileTabs/${locals.profileTab ?? 'overview'}`) %>
     </section>
   </main>

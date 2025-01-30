@@ -117,8 +117,10 @@ const insertPost = async ({ accountID, text }) => {
 const getAccountPosts = async ({ accountID }) => {
   const { rows: accountPosts } = await pool.query(
     `
-    SELECT * FROM posts
-      WHERE account_id = $1;
+    SELECT posts.id AS post_id, account_id, username, body, created_at FROM posts
+      LEFT JOIN accounts ON accounts.id = account_id
+      WHERE account_id = $1
+      ORDER BY created_at DESC;
     `,
     [accountID]
   );

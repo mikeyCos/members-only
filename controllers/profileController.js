@@ -22,7 +22,9 @@ const profileController = {
     console.log("getProfilePosts running...");
     const { id: accountID } = res.locals.profile;
     const posts = await getAccountPosts({ accountID });
+    console.log("res.locals.currentUser:", res.locals.currentUser);
     console.log("posts:", posts);
+    console.log(res.locals.currentUser.id === posts[0].account_id);
     res.render("accountPosts", { posts });
   }),
   setProfileTab: asyncHandler(async (req, res, next) => {

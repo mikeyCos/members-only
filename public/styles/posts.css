@@ -1,5 +1,6 @@
 #posts {
-  /* border: 2px solid red; */
+  max-width: 500px;
+  margin: auto;
 }
 
 #posts > *:not(:first-child, :last-child) {
@@ -26,16 +27,36 @@
 #posts > article > ul {
   display: flex;
   flex-direction: column;
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
 }
 
 #posts > article a {
+  position: relative;
   color: blue;
+}
+
+#posts > article a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: currentColor;
+}
+
+#posts > article a::hover::after {
 }
 
 /* Small devices */
 @media screen and (min-width: 481px) {
+  #posts > article > ul {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 /* Tablets */

@@ -11,7 +11,7 @@ const myAccountRouter = new Router();
 const isAuthenticated = (req, res, next) => {
   console.log("isAuthenticated running...");
   // If an account is logged in, redirect to the root
-  if (!req.isAuthenticated()) return res.status(401).render("401");
+  if (!req.isAuthenticated()) return next({ status: 401 });
   next();
 };
 

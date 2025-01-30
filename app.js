@@ -88,8 +88,7 @@ app.use((err, req, res, next) => {
   console.log("error middleware running...");
   console.log("err:", err);
   const { status, msg } = err;
-  res.status(status).render(`${status}`, { error: msg });
-  // res.status(404).render("404", { error: err.msg ?? "Resource not found" });
+  res.status(status).render("errors", { status, error: msg });
 });
 
 app.listen(PORT, () => console.log(`Application running on port: ${PORT}`));

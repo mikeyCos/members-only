@@ -5,14 +5,7 @@
   <%- include('./header') %>
   <main>
     <section id="account-posts">
-      <%# Navigation bar for manage account %>
-      <header>
-        <nav>
-          <ul>
-            <li><a href="/account/view-profile/<%= profile.username %>">View Profile</a></li>
-          </ul>
-        </nav>
-      </header>
+      <%- include('./accountHeader') %>
       <%- include('./posts', { heading: 'Account Posts'}) %>
     </section>
   </main>

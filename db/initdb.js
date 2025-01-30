@@ -50,6 +50,10 @@ const posts = [
     accountID: 1,
     body: "Ribbit ribbit",
   },
+  {
+    accountID: 2,
+    body: "The answer to everything is 42",
+  },
 ];
 
 const populateAccountsTable = async (accountsArr, client) => {

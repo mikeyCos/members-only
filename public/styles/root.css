@@ -42,7 +42,6 @@ main {
 }
 
 main > section {
-  outline: 2px dashed rgb(255, 153, 0);
   height: 100%;
   max-width: 1000px;
   padding: 1rem;
