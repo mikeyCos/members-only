@@ -17,10 +17,6 @@
   height: var(--menu-btn-height);
 }
 
-.btn-menu > .menu {
-  outline: 1px dashed rgb(0, 0, 0);
-}
-
 .btn-menu > .menu > .menu-line {
   transition: 200ms ease-in, opacity 150ms;
   transform-box: fill-box;

@@ -12,7 +12,12 @@ const confirmPassword = (password, { req }) => {
  * https://express-validator.github.io/docs/guides/customizing/#implementing-a-custom-validator
  */
 const fullnameValidator = async (fullname) => {
-  const regex = new RegExp("(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})");
+  // (^[A-Za-z]{1,})([ ]?)([A-Za-z]{1,})
+  const regex = new RegExp("(^[A-Za-z]{1,})([ ]{1})([A-Za-z]{1,})");
+  const regexResult = regex.test(fullname);
+
+  if (!regexResult) throw new Error();
+  return Promise.resolve();
 };
 
 const usernameValidator = async (username) => {
@@ -36,8 +41,11 @@ const accountSchema = {
       bail: true,
       errorMessage: "Fullname cannot be empty.",
     },
-    isAlpha: true,
-    errorMessage: "Fullname must only consist letters.",
+    custom: {
+      options: fullnameValidator,
+    },
+    errorMessage:
+      "Fullname must only consist letters, and a single space between first and last names",
     escape: true,
   },
   username: {

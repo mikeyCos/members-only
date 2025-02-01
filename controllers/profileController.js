@@ -16,6 +16,8 @@ const profileController = {
   }),
   getProfilePosts: asyncHandler(async (req, res) => {
     // Show all posts corresponding to the req.params.username
+    console.log("req.baseUrl:", req.baseUrl);
+    console.log("req.path:", req.path);
     const { id: accountID } = res.locals.profile;
     const posts = await getAccountPosts({ accountID });
     res.render("accountPosts", { posts });

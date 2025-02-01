@@ -27,6 +27,7 @@ const getAccount = async ({ id, username }) => {
     [id, username]
   );
 
+  console.log("account:", account);
   return account;
 };
 

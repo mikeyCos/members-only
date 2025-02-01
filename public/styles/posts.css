@@ -46,9 +46,20 @@
   right: 0;
   margin: auto;
   background-color: currentColor;
+  visibility: hidden;
 }
 
-#posts > article a::hover::after {
+#posts > article a:hover::after {
+  visibility: visible;
+}
+
+#posts .posts-zero {
+  text-align: center;
+}
+
+#posts > article a {
+  font-family: var(--font-family-secondary);
+  font-weight: 600;
 }
 
 /* Small devices */

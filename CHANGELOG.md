@@ -1,5 +1,13 @@
 # Changelog
 ---
+### 31 JAN 2025
+- Updated README.md.
+- Changed the conditional block in `posts.ejs` partial from `if...else` to `if...elseif...elseif...else`; the first  `elseif` block checks the local variable `heading` equals `Posts` and `currentUser` exists, and the second `elseif` block only checks if the local variable `heading` equals `Posts`.
+- Quick links to login and sign up are rendered if there are no posts and if a user goes to a route that requires authentication.
+- Enabled custom validator for the `accountSchema.fullname` in `signupValidator.js` module; the regular expression, `(^[A-Za-z]{1,})([ ]{0,1})([A-Za-z]{1,})` is tested against the field's value.
+- Changed `fullname` input's `placeholder` value from `fullname` to `John Doe`.
+- Changed the regular expression for the `fullnameValidator` asynchronous function in `signupValidator.js` module to require only one space between first name and last name.
+---
 ### 30 JAN 2025
 - Merged `styles-members-only` branch to `main` branch.
 - Attached `autocomplete="username"`, `autocomplete="new-password"`, and `autocomplete="current-password"` attributes on username and password inputs.
