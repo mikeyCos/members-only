@@ -190,7 +190,7 @@ const initDB = async () => {
   await client.query(CREATE_POSTS_TABLE_QUERY);
   await populateRolesTable(roles, client);
   await populateAccountsTable(accounts, client);
-  await populatePostsTable(posts, client);
+  // await populatePostsTable(posts, client);
   await client.end();
 };
 

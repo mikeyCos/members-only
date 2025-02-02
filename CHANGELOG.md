@@ -1,5 +1,11 @@
 # Changelog
 ---
+### 01 FEB 2025
+- Temporarily removed creation time for posts.
+- Saved a variety of media files in `/demo/media/` subdirectory.
+- Updated DEMO.md.
+- Updated README.md.
+---
 ### 31 JAN 2025
 - Updated README.md.
 - Changed the conditional block in `posts.ejs` partial from `if...else` to `if...elseif...elseif...else`; the first  `elseif` block checks the local variable `heading` equals `Posts` and `currentUser` exists, and the second `elseif` block only checks if the local variable `heading` equals `Posts`.

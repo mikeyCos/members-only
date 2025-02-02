@@ -29,13 +29,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/mikeyCos/members-only">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="./demo/media/project_screenshot_00.png" alt="Logo" width="auto" height="auto">
   </a>
 
-<h3 align="center">ProjectName</h3>
+<h3 align="center">Members Only</h3>
 
   <p align="center">
-    project_description
+    Members Only 
     <br />
     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
     <br />
@@ -80,7 +80,7 @@
 
 ## About The Project
 
-[![Members Only Screen Shot][product-screenshot]](https://example.com)
+[![Members Only Screen Shot][product-screenshot]](https://members-only-mikey-cos.fly.dev/)
 
 Project: Members Only
 
@@ -199,6 +199,12 @@ Currently, a 404 page will render when no path matches and display `Resource not
 
 The database can be reset by running `node db/initdb.js` in the terminal. Make sure to provide database connection information.
 
+<div align="center">
+  <a href="./demo/media/overview_mobile.gif">
+    <img src="./demo/media/overview_mobile.gif" alt="Usage Overview">
+  </a>
+</div>
+
 _For more examples, please refer to the [Demo](./demo/DEMO.md)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -228,7 +234,8 @@ _For more examples, please refer to the [Demo](./demo/DEMO.md)_
 - [x] Create a create post form.
   - [ ] Preserve newline upon POST request.
 - [ ] Create/rename a route for a frequently asked questions (FAQ) or about page.
-- [ ] Implement touch support for closing and opening main navigation. 
+- [ ] Implement touch support for closing and opening main navigation.
+- [ ] Fix `transition` issue when increasing or decreasing window size.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -280,7 +287,6 @@ Project Link: [https://github.com/mikeyCos/members-only](https://github.com/mike
 [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
