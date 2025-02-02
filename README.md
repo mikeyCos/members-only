@@ -35,12 +35,11 @@
 <h3 align="center">Members Only</h3>
 
   <p align="center">
-    Members Only 
-    <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
+    Members Only with CRUD methods, form validation, and protected routes.
     <br />
     <a href="https://members-only-mikey-cos.fly.dev/">Live Preview</a>
+    ·
+    <a href="./PROJECT_SPECIFICATIONS.md">Project Specifications</a>
     <!-- ·
     <a href="https://github.com/github_username/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
