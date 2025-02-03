@@ -53,13 +53,18 @@
   visibility: visible;
 }
 
-#posts .posts-zero {
-  text-align: center;
+#posts > article > p {
+  white-space: pre-line;
+  word-break: break-all;
 }
 
 #posts > article a {
   font-family: var(--font-family-secondary);
   font-weight: 600;
+}
+
+#posts .posts-zero {
+  text-align: center;
 }
 
 /* Small devices */

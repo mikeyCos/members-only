@@ -231,7 +231,7 @@ _For more examples, please refer to the [Demo](./demo/DEMO.md)_
   - [x] The role `admin` grants permission to delete posts.
   - [ ] The role `admin` grants permission to an admin dashboard route.
 - [x] Create a create post form.
-  - [ ] Preserve newline upon POST request.
+  - [x] Preserve newline upon POST request.
 - [ ] Create/rename a route for a frequently asked questions (FAQ) or about page.
 - [ ] Implement touch support for closing and opening main navigation.
 - [ ] Fix `transition` issue when increasing or decreasing window size.
