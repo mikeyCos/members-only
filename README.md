@@ -28,7 +28,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/mikeyCos/members-only">
+  <a href="https://members-only-mikey-cos.fly.dev/">
     <img src="./demo/media/project_screenshot_00.png" alt="Logo" width="auto" height="auto">
   </a>
 

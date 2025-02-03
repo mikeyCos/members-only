@@ -4,6 +4,7 @@
 - Created `text-area-fix` branch.
 - Fixed HTML entities from appearing as plain text in posts by removing `.escape` from `postSchema`.
 - Fixed newline preservation issue by adding `white-space: pre-line` and `word-break: break-all` CSS property-value pairs to the `p` element containing post text.
+- Merged `text-area-fix` branch to `main` branch.
 ---
 ### 01 FEB 2025
 - Temporarily removed creation time for posts.
