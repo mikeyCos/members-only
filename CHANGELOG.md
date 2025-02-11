@@ -1,5 +1,8 @@
 # Changelog
 ---
+### 11 FEB 2025
+- Fixed format in README.md.
+---
 ### 02 FEB 2025
 - Created `text-area-fix` branch.
 - Fixed HTML entities from appearing as plain text in posts by removing `.escape` from `postSchema`.

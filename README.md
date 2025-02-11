@@ -202,9 +202,9 @@ The database can be reset by running `node db/initdb.js` in the terminal. Make s
   <a href="./demo/media/overview_mobile.gif">
     <img src="./demo/media/overview_mobile.gif" alt="Usage Overview">
   </a>
-</div>
 
-_For more examples, please refer to the [Demo](./demo/DEMO.md)_
+  _For more examples, please refer to the [Demo](./demo/DEMO.md)_
+</div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -243,8 +243,6 @@ _For more examples, please refer to the [Demo](./demo/DEMO.md)_
 ## Contact
 
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
-Project Link: [https://github.com/mikeyCos/members-only](https://github.com/mikeyCos/members-only)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
